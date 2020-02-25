@@ -1,9 +1,9 @@
+/***********************
+ * Employee class
+ * Author: Dylan O'Connor
+ * 25/02/2020
+ **********************/
 package com.lab3.com;
-/***************
- * Control Class for Employee
- * @author dylanoconnor
- *
- **********/
 
 public class Control {
 	
