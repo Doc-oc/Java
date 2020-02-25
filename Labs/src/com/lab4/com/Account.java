@@ -1,6 +1,6 @@
 package com.lab4.com;
 
-public class Account{
+public class Account implements ValidatedAccount{
 	//attributes
 	private String accountName;
 	private int accountNumber;
@@ -8,14 +8,17 @@ public class Account{
 	private String branchName;
 	public boolean inCredit;
 	public double acctBalance;
+	private static int currentNumber = 1;
 	
 	public Account(String accountName, int accountNumber, String sortCode, String branchName, boolean inCredit, double acctBalance){
 		this.accountName = accountName;
-		this.setAccountNumber(accountNumber);
+		this.setAccountNumber(currentNumber);
 		this.setSortCode(sortCode);
 		this.setBranchName(branchName);
 		this.setInCredit(inCredit);
 		this.setAcctBalance(acctBalance);
+		
+		currentNumber++;
 	}
 	
 	//setters and getters
@@ -94,8 +97,17 @@ public class Account{
 		System.out.println(accountName, acctBalance);
 	}*/
 	
-	public void valuableAccount() {
+	public void getDetails() {
+		System.out.println("\nAccount Name: " + accountName + "\nAccount Balance: " + acctBalance);
 		
 	}
+	public void valuableAccount() {
+		System.out.println("\nAccount Balance: " + acctBalance);
+	}
+
+	public int getCurrentNumber() {
+		return currentNumber;
+	}
+
 	
 }//end account class
