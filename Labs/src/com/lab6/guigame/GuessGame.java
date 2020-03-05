@@ -85,7 +85,6 @@ public class GuessGame extends JFrame implements ActionListener {
 		//if user clicks generate button
 		if(e1.getSource() == generate) {
 			result = number.nextInt(100);
-			JOptionPane.showMessageDialog(this, result);
 			check.setEnabled(true);
 		}
 		
