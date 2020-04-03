@@ -1,15 +1,19 @@
 package com.assignment;
 
-public class Analyse extends FileChooser{
 
-	//default serial verision
+import java.awt.event.ActionListener;
+
+
+//import javax.swing.JOptionPane;
+//import javax.swing.*;
+
+public class Analyse extends FileChooser implements ActionListener  {
+
+	//default serial version
 	private static final long serialVersionUID = 1L;
-
-	//attributes
 	
-	public Analyse(String myTitle) {
-		super(myTitle);
-		// TODO Auto-generated constructor stub
-	}
-
-}
+	//attributes
+	 static String test;
+	 
+ 
+}//end Analyse 

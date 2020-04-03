@@ -8,18 +8,18 @@ package com.assignment;
  *******/
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class FileChooser extends JFrame{
+public class FileChooser extends JFrame implements ActionListener {
 	
 	private static final long serialVersionUID = 1L;
 	JLabel heading, fileLabel1, fileLabel2, fileLabel3;
 	JButton searchButton; 
 	JTextField file1Text, file2Text, file3Text;
-	
 
-    public FileChooser (String myTitle) {
-    	super(myTitle);
-    	
+    public FileChooser () {
+
     	//Frame/Panel
         JFrame frame = new JFrame();
         JPanel panel = new JPanel();
@@ -55,6 +55,10 @@ public class FileChooser extends JFrame{
         right.fill = GridBagConstraints.HORIZONTAL;
         right.gridwidth = GridBagConstraints.REMAINDER;
         
+        searchButton.addActionListener(this);
+        file1Text.addActionListener(this);
+        
+        
         //adding elements to gui
         panel.add(fileLabel1, left);
         panel.add(file1Text, right);
@@ -70,6 +74,16 @@ public class FileChooser extends JFrame{
         //so that elements fit on screen best
         frame.pack();
         frame.setVisible(true);
+        
+        
+        
     }
-
+    
+   
+    public void actionPerformed (ActionEvent e1) {
+		Analyse.test = file1Text.getText();
+		
+		
+		JOptionPane.showMessageDialog(this, Analyse.test);
+	}
 }
