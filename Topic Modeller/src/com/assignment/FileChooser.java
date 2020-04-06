@@ -83,10 +83,12 @@ public class FileChooser extends JFrame implements ActionListener {
     public void actionPerformed (ActionEvent e1) {
 		//Analyse.test = file1Text.getText();
 		
+    	//creating an instance of filemanger class
 		FileManager fm = new FileManager(file1Text.getText());
-    	fm.connectToFile();
-    	String[] validRoles = fm.readFile();
-		JOptionPane.showMessageDialog(this, validRoles);
+    	fm.connectToFile();//connecting to file
+    		
+    	String[] Names = fm.readFile(); //testing conectivity
+		JOptionPane.showMessageDialog(this, Names);
 		fm.closeReadFile();
     }
 }

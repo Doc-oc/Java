@@ -1,3 +1,9 @@
+/*******
+ * Class that manages the connectivity and reading of files
+ * Author: Dylan O'Connor 
+ * 
+ ****/
+
 package com.assignment;
 
 import java.io.File;
