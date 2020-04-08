@@ -9,10 +9,10 @@ package com.assignment;
 public class Control {
 	public static void main(String [] args) {
 		@SuppressWarnings("unused")
-		FileChooser screen = new FileChooser();
+		FileChooser screen = new FileChooser("File Chooser");
 		
-		Analyse newAnalysis = new Analyse();
+		Analyse newAn = new Analyse(null);
 		
-		System.out.println(newAnalysis);
+		newAn.getWords();
 	}//end main
 }//end control

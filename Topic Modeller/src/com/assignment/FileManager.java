@@ -1,6 +1,6 @@
 /*******
  * Class that manages the connectivity and reading of files
- * Author: Dylan O'Connor 
+ * Author: Dylan O'Connor  
  * 
  ****/
 
@@ -13,15 +13,17 @@ import java.util.Scanner;
 public class FileManager {
 	//attribites
 	String fileName;
-	File file1;
+	File file;
 	Scanner input;
 	
+	//constructor
 	public FileManager(String fileName) {
 		this.fileName = fileName;
 	}
 	
+	//connecting to a file
 	void connectToFile() {
-		file1 = new File(fileName);
+		file = new File(fileName);
 	}
 	
 	@SuppressWarnings("finally")
@@ -29,24 +31,27 @@ public class FileManager {
 		String[] values = new String[6];
 		try
 		{
+			
 	    	int i = 0;
-	    	input = new Scanner(file1); 
-			 while (input.hasNextLine())
+	    	input = new Scanner(file); 
+	    	
+	    	//reading lines from file
+			 while(input.hasNextLine())
 			    {
 			      
 				 values[i] = input.nextLine();
-			      i++;
-			    }
-		}
+			     i++;
+			    }//end while
+		}//end try
 		catch (FileNotFoundException e)
 		{
-			System.out.println("run time error " + e.getMessage());
-		}
+			System.out.println("Error: " + e.getMessage());
+		}//end catch
 	    finally
 	    {
-	        return values;
+			return values;
 	    }
-	}
+	}//end ReadFile
 	
 	 void closeReadFile(){
 		input.close();

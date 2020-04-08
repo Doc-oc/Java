@@ -17,9 +17,10 @@ public class FileChooser extends JFrame implements ActionListener {
 	JLabel heading, fileLabel1, fileLabel2, fileLabel3;
 	JButton searchButton; 
 	JTextField file1Text, file2Text, file3Text;
-
-    public FileChooser () {
-
+	String[] words;
+    public FileChooser (String myTitle) {
+    	super(myTitle);
+    	
     	//Frame/Panel
         JFrame frame = new JFrame();
         JPanel panel = new JPanel();
@@ -81,14 +82,12 @@ public class FileChooser extends JFrame implements ActionListener {
     
    
     public void actionPerformed (ActionEvent e1) {
-		//Analyse.test = file1Text.getText();
-		
     	//creating an instance of filemanger class
 		FileManager fm = new FileManager(file1Text.getText());
     	fm.connectToFile();//connecting to file
     		
-    	String[] Names = fm.readFile(); //testing conectivity
-		JOptionPane.showMessageDialog(this, Names);
+    	words = fm.readFile();
+		JOptionPane.showMessageDialog(this, words);
 		fm.closeReadFile();
     }
 }
