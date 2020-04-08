@@ -8,6 +8,8 @@ package com.assignment;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class FileManager {
@@ -15,6 +17,7 @@ public class FileManager {
 	String fileName;
 	File file;
 	Scanner input;
+	HashMap<String, Integer> wordFreq = new HashMap<String, Integer>();
 	
 	//constructor
 	public FileManager(String fileName) {
@@ -42,6 +45,7 @@ public class FileManager {
 				 values[i] = input.nextLine();
 			     i++;
 			    }//end while
+			 
 		}//end try
 		catch (FileNotFoundException e)
 		{
@@ -49,10 +53,46 @@ public class FileManager {
 		}//end catch
 	    finally
 	    {
+	    	
 			return values;
 	    }
+		
+		
 	}//end ReadFile
 	
+	
+	//gettigs words into hash map
+	@SuppressWarnings("finally")
+	public HashMap<String, Integer> getWords() {
+		try {
+			input = new Scanner(file);
+			
+			while(input.hasNext()) {
+				String word = input.next();
+				if(wordFreq.containsKey(word)) {
+					//
+					int counter = wordFreq.get(word)+ 1;
+					wordFreq.put(word, counter);
+				}//end if
+				else {
+					wordFreq.put(word,  1);
+				}//end else
+			}//end while
+		}
+		catch (FileNotFoundException e)
+		{
+			System.out.println("Error: " + e.getMessage());
+		}//end catch
+	    finally
+	    {
+	    	for (Map.Entry<String, Integer> entry : wordFreq.entrySet()) {
+	    		System.out.print(entry+"\n");
+	    	}
+	    	
+	    	return wordFreq;
+	    }
+		
+	}
 	 void closeReadFile(){
 		input.close();
 	 }

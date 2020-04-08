@@ -10,6 +10,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
 
 public class FileChooser extends JFrame implements ActionListener {
 	
@@ -84,10 +85,14 @@ public class FileChooser extends JFrame implements ActionListener {
     public void actionPerformed (ActionEvent e1) {
     	//creating an instance of filemanger class
 		FileManager fm = new FileManager(file1Text.getText());
+		
+		//HashMap map = fm.getWords();
+		
     	fm.connectToFile();//connecting to file
-    		
     	words = fm.readFile();
-		JOptionPane.showMessageDialog(this, words);
+    	JOptionPane.showMessageDialog(this, words);
 		fm.closeReadFile();
+		
+		
     }
 }
