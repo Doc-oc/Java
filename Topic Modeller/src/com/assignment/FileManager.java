@@ -9,7 +9,6 @@ package com.assignment;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
-import java.util.stream.Collectors;
 import static java.util.stream.Collectors.*;
 
 public class FileManager implements Comparator<Object> {
@@ -61,10 +60,12 @@ public class FileManager implements Comparator<Object> {
 			}//end while
 			
 			//sorting hash map in descending order to dispaly top 5 results
-			sortCount = wordFreq.entrySet().stream().sorted(Map.Entry.<String, Integer>comparingByValue().reversed())
+			sortCount = wordFreq.entrySet()
+					.stream()
+					.sorted(Map.Entry.<String, Integer>comparingByValue().reversed())
 					.collect(toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
-
-
+			
+			
 		}//end try
 		
 		
@@ -83,16 +84,8 @@ public class FileManager implements Comparator<Object> {
 		
 	}//end getWords()
 	
-
-	
 	
 	 void closeFile(){
 		input.close();
 	 }
-
-
-
-	
-
-
 }

@@ -12,7 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.TreeMap;
+
 
 public class FileChooser extends JFrame implements ActionListener {
 	
@@ -21,6 +21,10 @@ public class FileChooser extends JFrame implements ActionListener {
 	JButton searchButton; 
 	JTextField file1Text, file2Text, file3Text;
 	String[] words;
+	
+	 
+	HashMap<String, Integer> wordMap= new HashMap<String, Integer>();
+
     public FileChooser (String myTitle) {
     	super(myTitle);
     	
@@ -87,9 +91,31 @@ public class FileChooser extends JFrame implements ActionListener {
     public void actionPerformed (ActionEvent e1) {
     	//creating an instance of filemanger class
 		FileManager fm = new FileManager(file1Text.getText());
-    	fm.connectToFile();//connecting to file		 
-    	JOptionPane.showMessageDialog(this, fm.getWords());
+		
+    	fm.connectToFile();//connecting to file
+    	
+    	//creating instance of FileManager class to display Hashmap
+    	
+    	wordMap = fm.getWords();    
+        
+    	//displaying hash map in table
+    	
+		JTable table=new JTable(5, 2);
+		
+
+		
+		int row=0;
+		for(Map.Entry<String,Integer> entry: wordMap.entrySet()){
+			if(row != 5) {
+				table.setValueAt(entry.getKey(),row,0);
+			    table.setValueAt(entry.getValue(),row,1);
+			    row++;
+			}//end if
+		}//
+		 
+    	JOptionPane.showMessageDialog(this, table);
 		fm.closeFile();
+		
 		
     }
 }
