@@ -9,20 +9,25 @@ package com.assignment;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
-import java.util.Scanner;
+import java.util.stream.Collectors;
+import static java.util.stream.Collectors.*;
 
-
-public class FileManager {
+public class FileManager implements Comparator<Object> {
 	//attribites
 	String fileName; 
 	File file;
 	Scanner input;
 	HashMap<String, Integer> wordFreq = new HashMap<String, Integer>();
-	HashMap<String, Integer> sortedMap = new HashMap<String, Integer>();
+	HashMap<String, Integer> sortCount= new HashMap<String, Integer>();
 	
-	//constructor
+	//constructorS
 	public FileManager(String fileName) {
 		this.fileName = fileName;
+	}
+	
+	public int compare(Object o1, Object o2) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 	//connecting to a file
@@ -33,7 +38,7 @@ public class FileManager {
 	
 	
 	//gettigs words into hash map
-	@SuppressWarnings("finally")
+	@SuppressWarnings({ "finally" })
 	public HashMap<String, Integer> getWords() {
 		
 		
@@ -55,6 +60,11 @@ public class FileManager {
 				}//end else
 			}//end while
 			
+			//sorting hash map in descending order to dispaly top 5 results
+			sortCount = wordFreq.entrySet().stream().sorted(Map.Entry.<String, Integer>comparingByValue().reversed())
+					.collect(toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+
+
 		}//end try
 		
 		
@@ -66,14 +76,23 @@ public class FileManager {
 		
 	    finally
 	    {
-	    	return wordFreq;
+
+			 return sortCount; 
+		      
 	    }//end finally
 		
-	}
+	}//end getWords()
+	
+
+	
 	
 	 void closeFile(){
 		input.close();
 	 }
+
+
+
+	
 
 
 }
