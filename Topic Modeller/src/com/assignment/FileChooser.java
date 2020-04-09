@@ -11,6 +11,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
+import java.util.Map;
 
 public class FileChooser extends JFrame implements ActionListener {
 	
@@ -86,12 +87,22 @@ public class FileChooser extends JFrame implements ActionListener {
     	//creating an instance of filemanger class
 		FileManager fm = new FileManager(file1Text.getText());
 		
-		//HashMap map = fm.getWords();
-		
     	fm.connectToFile();//connecting to file
-    	words = fm.readFile();
-    	JOptionPane.showMessageDialog(this, words);
-		fm.closeReadFile();
+    	
+    	//creating instance of FileManager class to display Hashmap
+    	Map<String,Integer> map=new HashMap<>(fm.getWords());
+		
+		 JTable table=new JTable(map.size(),2);
+		 int row=0;
+		 
+		 for(Map.Entry<String,Integer> entry: map.entrySet()){
+		      table.setValueAt(entry.getKey(),row,0);
+		      table.setValueAt(entry.getValue(),row,1);
+		      row++;
+		 }
+		 
+    	JOptionPane.showMessageDialog(this, table);
+		fm.closeFile();
 		
 		
     }

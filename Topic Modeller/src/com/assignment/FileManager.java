@@ -8,16 +8,17 @@ package com.assignment;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.Scanner;
+
 
 public class FileManager {
 	//attribites
-	String fileName;
+	String fileName; 
 	File file;
 	Scanner input;
 	HashMap<String, Integer> wordFreq = new HashMap<String, Integer>();
+	HashMap<String, Integer> sortedMap = new HashMap<String, Integer>();
 	
 	//constructor
 	public FileManager(String fileName) {
@@ -29,48 +30,23 @@ public class FileManager {
 		file = new File(fileName);
 	}
 	
-	@SuppressWarnings("finally")
-	String[] readFile() {
-		String[] values = new String[6];
-		try
-		{
-			
-	    	int i = 0;
-	    	input = new Scanner(file); 
-	    	
-	    	//reading lines from file
-			 while(input.hasNextLine())
-			    {
-			      
-				 values[i] = input.nextLine();
-			     i++;
-			    }//end while
-			 
-		}//end try
-		catch (FileNotFoundException e)
-		{
-			System.out.println("Error: " + e.getMessage());
-		}//end catch
-	    finally
-	    {
-	    	
-			return values;
-	    }
-		
-		
-	}//end ReadFile
 	
 	
 	//gettigs words into hash map
 	@SuppressWarnings("finally")
 	public HashMap<String, Integer> getWords() {
+		
+		
 		try {
+			//Scan File
 			input = new Scanner(file);
 			
+			
+			//Get words from file
 			while(input.hasNext()) {
 				String word = input.next();
+				//if Hash Map already has word increment counter
 				if(wordFreq.containsKey(word)) {
-					//
 					int counter = wordFreq.get(word)+ 1;
 					wordFreq.put(word, counter);
 				}//end if
@@ -78,22 +54,26 @@ public class FileManager {
 					wordFreq.put(word,  1);
 				}//end else
 			}//end while
-		}
+			
+		}//end try
+		
+		
 		catch (FileNotFoundException e)
 		{
 			System.out.println("Error: " + e.getMessage());
 		}//end catch
+		
+		
 	    finally
 	    {
-	    	for (Map.Entry<String, Integer> entry : wordFreq.entrySet()) {
-	    		System.out.print(entry+"\n");
-	    	}
-	    	
 	    	return wordFreq;
-	    }
+	    }//end finally
 		
 	}
-	 void closeReadFile(){
+	
+	 void closeFile(){
 		input.close();
 	 }
+
+
 }

@@ -2,6 +2,8 @@ package com.assignment;
 
 import java.awt.*;
 import java.awt.event.*;
+
+
 import javax.swing.*;
 
 public class FileResults extends FileChooser {
@@ -25,15 +27,12 @@ public class FileResults extends FileChooser {
 		panel.add(resultsLabel);
 		add(panel, BorderLayout.NORTH);
 		
-		searchButton.addActionListener(this);
-		
+		//searchButton.addActionListener(this);
+		setVisible(false);
 	}
 	
 	public void actionPerformed(ActionEvent e1) {
-		if(e1.getSource()==searchButton) {
-			JOptionPane.showMessageDialog(this, words);
-			setVisible(true);
-		}
+		
 		
 	}
 }

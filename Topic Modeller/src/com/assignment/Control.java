@@ -10,10 +10,6 @@ public class Control {
 	public static void main(String [] args) {
 		@SuppressWarnings("unused")
 		FileChooser screen = new FileChooser("File Chooser");
-		@SuppressWarnings("unused")
-		FileResults screen1 = new FileResults("Results");
-		@SuppressWarnings("unused")
-		Analyse newAn = new Analyse(null);
 		
 		//newAn.getWords();
 	}//end main
