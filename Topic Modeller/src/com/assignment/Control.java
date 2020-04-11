@@ -11,6 +11,7 @@ public class Control {
 		@SuppressWarnings("unused")
 		FileChooser screen = new FileChooser("File Chooser");
 		
+		
 		//newAn.getWords();
 	}//end main
 }//end control

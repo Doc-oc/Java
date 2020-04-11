@@ -66,6 +66,9 @@ public class FileManager implements Comparator<Object> {
 					.collect(toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
 			
 			
+			//creating instace of stopwords
+			StopWords s1 = new StopWords(sortCount);
+			s1.getStopWords();
 		}//end try
 		
 		
@@ -87,5 +90,5 @@ public class FileManager implements Comparator<Object> {
 	
 	 void closeFile(){
 		input.close();
-	 }
+	 }//end closeFile
 }
