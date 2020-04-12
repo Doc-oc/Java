@@ -1,38 +1,52 @@
+/***********
+ * 
+ * Author: Dylan O'Connor
+ * TBD
+ **********/
+
 package com.assignment;
 
 import java.awt.*;
 import java.awt.event.*;
-
-
 import javax.swing.*;
 
-public class FileResults extends FileChooser {
+
+public class FileResults extends JFrame implements ActionListener{
 	
+	//attributes
+	JFrame frame2;
+	JPanel centrePanel, northPanel, southPanel;
+	JTable table2;
+	JTable table3;
+	JLabel headingLabel;
 	private static final long serialVersionUID = 1L;
-	//
-	JLabel resultsLabel;
-	JPanel panel;
-	//
-	public FileResults(String myTitle) {
-		super(myTitle);
-		//JFrame frame = new JFrame();
-		panel = new JPanel();
+
+	//constructor
+	public FileResults(JTable table2, JTable table3) {
 		
-		BorderLayout b1 = new BorderLayout();
-		setLayout(b1);
+		frame2 = new JFrame();
+        JPanel centrePanel = new JPanel();
+        JPanel northPanel = new JPanel();
+        
+        BorderLayout bl1 = new BorderLayout();
+		setLayout(bl1);
+		
+		headingLabel = new JLabel("Results are as Follows: ");
+		
 		setSize(500,500);
 		
-		resultsLabel = new JLabel("Results: ");
+		centrePanel.add(table2);
+		centrePanel.add(table3);
+		northPanel.add(headingLabel);
 		
-		panel.add(resultsLabel);
-		add(panel, BorderLayout.NORTH);
+		//adding elements to panel
+		add(centrePanel, BorderLayout.CENTER);
+		add(northPanel, BorderLayout.NORTH);
 		
-		//searchButton.addActionListener(this);
-		setVisible(false);
+	
 	}
 	
-	public void actionPerformed(ActionEvent e1) {
-		
-		
+	public void actionPerformed (ActionEvent e1) {
+		//todo
 	}
-}
+}//end class

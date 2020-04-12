@@ -33,6 +33,7 @@ public class StopWords {
 			while(input.hasNextLine())  
 			 {  
 				stopwords[i] = input.nextLine();
+	
 				if(words.containsKey(stopwords[i])) {
 					words.remove(stopwords[i]);
 				}

@@ -7,10 +7,13 @@ package com.assignment;
  * End Date: ..
  *******/
 import javax.swing.*;
+
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
+//import java.util.Map;
 import java.util.Map;
 
 
@@ -20,18 +23,21 @@ public class FileChooser extends JFrame implements ActionListener {
 	JLabel heading, fileLabel1, fileLabel2, fileLabel3;
 	JButton searchButton; 
 	JTextField file1Text, file2Text, file3Text;
+	JFrame frame;
 	String[] words;
 	
-	 
-	HashMap<String, Integer> wordMap= new HashMap<String, Integer>();
+	JTable table;	HashMap<String, Integer> wordMap= new HashMap<String, Integer>();
 
+	
     public FileChooser (String myTitle) {
     	super(myTitle);
     	
     	//Frame/Panel
-        JFrame frame = new JFrame();
+    	frame = new JFrame();
         JPanel panel = new JPanel();
         searchButton = new JButton("Search Files!");
+
+		
         
         //heading
         heading = new JLabel("Welcome to Topic Modeller!  Enter File names to check if they are related!");
@@ -48,6 +54,7 @@ public class FileChooser extends JFrame implements ActionListener {
 
         frame.getContentPane().add(BorderLayout.NORTH, heading);
         frame.getContentPane().add(BorderLayout.SOUTH, searchButton);
+       
         
         //Setting up gridlayout
         panel.setLayout(new GridBagLayout());
@@ -66,6 +73,7 @@ public class FileChooser extends JFrame implements ActionListener {
         searchButton.addActionListener(this);
         file1Text.addActionListener(this);
         
+	
         
         //adding elements to gui
         panel.add(fileLabel1, left);
@@ -81,41 +89,35 @@ public class FileChooser extends JFrame implements ActionListener {
         //sizing window to the default size
         //so that elements fit on screen best
         frame.pack();
-        frame.setVisible(true);
-        
-        
+        frame.setVisible(true); 
         
     }
-    
    
     public void actionPerformed (ActionEvent e1) {
-    	//creating an instance of filemanger class
-		FileManager fm = new FileManager(file1Text.getText());
-		
-    	fm.connectToFile();//connecting to file
+    	FileManager fm = new FileManager(file1Text.getText());
     	
     	//creating instance of FileManager class to display Hashmap
+    	fm.connectToFile();//connecting to file
+    	wordMap = fm.getWords();
+    	JTable table = new JTable(5,2);
     	
-    	wordMap = fm.getWords();    
-        
     	//displaying hash map in table
-    	
-		JTable table=new JTable(5, 2);
-		
-
-		
-		int row=0;
+    	int row=0;
 		for(Map.Entry<String,Integer> entry: wordMap.entrySet()){
 			if(row != 5) {
 				table.setValueAt(entry.getKey(),row,0);
 			    table.setValueAt(entry.getValue(),row,1);
 			    row++;
 			}//end if
-		}//
-		 
-    	JOptionPane.showMessageDialog(this, table);
+		}
+		
+		FileResults f1 = new FileResults(table, table);
+		f1.setVisible(true);
+		
+		//closing file
 		fm.closeFile();
 		
-		
     }
+    
+
 }

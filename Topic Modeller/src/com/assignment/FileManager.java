@@ -39,8 +39,6 @@ public class FileManager implements Comparator<Object> {
 	//gettigs words into hash map
 	@SuppressWarnings({ "finally" })
 	public HashMap<String, Integer> getWords() {
-		
-		
 		try {
 			//Scan File
 			input = new Scanner(file);
@@ -81,7 +79,7 @@ public class FileManager implements Comparator<Object> {
 	    finally
 	    {
 
-			 return sortCount; 
+			return sortCount; 
 		      
 	    }//end finally
 		
