@@ -56,7 +56,7 @@ public class FileResults extends JFrame implements ActionListener{
         panel.add(file1Results, left);
         panel.add(table, right);
         panel.add(file2Results, left);
-         panel.add(table2, right);
+        panel.add(table2, right);
         
         /*panel.add(file3Results, left);
         panel.add(file3Text, right);
@@ -70,8 +70,7 @@ public class FileResults extends JFrame implements ActionListener{
         frame.setVisible(true); 
         
 		
-		centrePanel.add(table);
-		southPanel.add(table2);
+		
 	}
 	
 	public void actionPerformed (ActionEvent e1) {
