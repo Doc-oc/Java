@@ -6,10 +6,12 @@ import java.util.*;
 
 public class StopWords {
 	
+	//attributwes 
 	HashMap<String, Integer> words;
 	File stopWords;
 	Scanner input;
 
+	//Constructor
 	public StopWords(HashMap<String, Integer> words){
 		this.words = words;
 		

@@ -14,7 +14,7 @@ import javax.swing.*;
 public class FileResults extends JFrame implements ActionListener{
 	
 	//attributes
-	JFrame frame2;
+	JFrame frame;
 	JPanel centrePanel, northPanel, southPanel;
 	JTable table2;
 	JTable table3;
@@ -22,28 +22,56 @@ public class FileResults extends JFrame implements ActionListener{
 	private static final long serialVersionUID = 1L;
 
 	//constructor
-	public FileResults(JTable table2, JTable table3) {
+	public FileResults(JTable table, JTable table2) {
 		
-		frame2 = new JFrame();
-        JPanel centrePanel = new JPanel();
-        JPanel northPanel = new JPanel();
-        
+		frame = new JFrame();
+        JPanel panel = new JPanel();
+
         BorderLayout bl1 = new BorderLayout();
-		setLayout(bl1);
+		getContentPane().setLayout(bl1);
 		
 		headingLabel = new JLabel("Results are as Follows: ");
+		headingLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		JLabel file1Results = new JLabel("File 1 Results:       ");
+		JLabel file2Results = new JLabel("File 2 Results:       ");
+		JLabel file3Results = new JLabel("File 3 Results:		");
 		
-		setSize(500,500);
+		frame.getContentPane().add(BorderLayout.NORTH, headingLabel);
+ 
+        //Setting up gridlayout
+        panel.setLayout(new GridBagLayout());
+        frame.getContentPane().add(panel);
+        
+        //leftside elements
+        GridBagConstraints left = new GridBagConstraints();
+        left.anchor = GridBagConstraints.EAST;
+        
+        //right side elements
+        GridBagConstraints right = new GridBagConstraints();
+        right.weightx = 2.0;
+        right.fill = GridBagConstraints.HORIZONTAL;
+        right.gridwidth = GridBagConstraints.REMAINDER;
+        
+
+        panel.add(file1Results, left);
+        panel.add(table, right);
+        panel.add(file2Results, left);
+         panel.add(table2, right);
+        
+        /*panel.add(file3Results, left);
+        panel.add(file3Text, right);
+        */
+        //setting border around center so items are spread out
+        panel.setBorder(BorderFactory.createEmptyBorder(30, 30, 30, 30));
+        
+        //sizing window to the default size
+        //so that elements fit on screen best
+        frame.pack();
+        frame.setVisible(true); 
+        
 		
-		centrePanel.add(table2);
-		centrePanel.add(table3);
-		northPanel.add(headingLabel);
-		
-		//adding elements to panel
-		add(centrePanel, BorderLayout.CENTER);
-		add(northPanel, BorderLayout.NORTH);
-		
-	
+		centrePanel.add(table);
+		southPanel.add(table2);
 	}
 	
 	public void actionPerformed (ActionEvent e1) {

@@ -12,6 +12,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.util.HashMap;
 //import java.util.Map;
 import java.util.Map;
@@ -37,7 +38,6 @@ public class FileChooser extends JFrame implements ActionListener {
         JPanel panel = new JPanel();
         searchButton = new JButton("Search Files!");
 
-		
         
         //heading
         heading = new JLabel("Welcome to Topic Modeller!  Enter File names to check if they are related!");
@@ -70,6 +70,17 @@ public class FileChooser extends JFrame implements ActionListener {
         right.fill = GridBagConstraints.HORIZONTAL;
         right.gridwidth = GridBagConstraints.REMAINDER;
         
+        /*JFileChooser jFileChooser = new JFileChooser();
+        jFileChooser.setCurrentDirectory(new File("/User/dylan"));
+         
+        int result = jFileChooser.showOpenDialog(new JFrame());
+     
+     
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = jFileChooser.getSelectedFile();
+            System.out.println("Selected file: " + selectedFile.getAbsolutePath());
+        }*/
+        
         searchButton.addActionListener(this);
         file1Text.addActionListener(this);
         
@@ -94,11 +105,16 @@ public class FileChooser extends JFrame implements ActionListener {
     }
    
     public void actionPerformed (ActionEvent e1) {
-    	FileManager fm = new FileManager(file1Text.getText());
+    	String file1 = file1Text.getText();
+    	String file2 = file2Text.getText();
+    	String file3 = file3Text.getText();
+    	
+    	FileManager fm = new FileManager(file1);
     	
     	//creating instance of FileManager class to display Hashmap
     	fm.connectToFile();//connecting to file
     	wordMap = fm.getWords();
+    	
     	JTable table = new JTable(5,2);
     	
     	//displaying hash map in table
@@ -110,13 +126,37 @@ public class FileChooser extends JFrame implements ActionListener {
 			    row++;
 			}//end if
 		}
-		
-		FileResults f1 = new FileResults(table, table);
-		f1.setVisible(true);
-		
-		//closing file
 		fm.closeFile();
 		
+		
+		
+		
+		
+		
+		FileManager fm1 = new FileManager(file2);
+		//creating instance of FileManager class to display Hashmap
+    	fm1.connectToFile();//connecting to file
+    	wordMap = fm1.getWords();
+    	
+    	JTable table2 = new JTable(5,2);
+    	
+    	//displaying hash map in table
+    	row=0;
+		for(Map.Entry<String,Integer> entry: wordMap.entrySet()){
+			if(row != 5) {
+				table2.setValueAt(entry.getKey(),row,0);
+			    table2.setValueAt(entry.getValue(),row,1);
+			    row++;
+			}//end if
+		}
+		
+
+		FileResults f1 = new FileResults(table, table2);
+		f1.setVisible(true);
+		
+		//closing file 
+		fm1.closeFile();
+  
     }
     
 
