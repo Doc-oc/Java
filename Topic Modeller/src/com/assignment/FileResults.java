@@ -16,13 +16,11 @@ public class FileResults extends JFrame implements ActionListener{
 	//attributes
 	JFrame frame;
 	JPanel centrePanel, northPanel, southPanel;
-	JTable table2;
-	JTable table3;
 	JLabel headingLabel;
 	private static final long serialVersionUID = 1L;
 
 	//constructor
-	public FileResults(JTable table, JTable table2) {
+	public FileResults(JTable table, JTable table2, JTable table3) {
 		
 		frame = new JFrame();
         JPanel panel = new JPanel();
@@ -32,6 +30,7 @@ public class FileResults extends JFrame implements ActionListener{
 		
 		headingLabel = new JLabel("Results are as Follows: ");
 		headingLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		
 		JLabel file1Results = new JLabel("File 1 Results:       ");
 		JLabel file2Results = new JLabel("File 2 Results:       ");
 		JLabel file3Results = new JLabel("File 3 Results:		");
@@ -57,6 +56,8 @@ public class FileResults extends JFrame implements ActionListener{
         panel.add(table, right);
         panel.add(file2Results, left);
         panel.add(table2, right);
+        panel.add(file3Results, left);
+        panel.add(table3, right);
         
         /*panel.add(file3Results, left);
         panel.add(file3Text, right);

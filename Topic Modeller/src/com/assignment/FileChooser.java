@@ -27,7 +27,8 @@ public class FileChooser extends JFrame implements ActionListener {
 	JFrame frame;
 	String[] words;
 	
-	JTable table;	HashMap<String, Integer> wordMap= new HashMap<String, Integer>();
+	JTable table;	
+	HashMap<String, Integer> wordMap= new HashMap<String, Integer>();
 
 	
     public FileChooser (String myTitle) {
@@ -128,8 +129,8 @@ public class FileChooser extends JFrame implements ActionListener {
 		}
 		fm.closeFile();
 		
-		
-		
+
+
 		
 		
 		
@@ -150,14 +151,38 @@ public class FileChooser extends JFrame implements ActionListener {
 			}//end if
 		}
 		
-
-		FileResults f1 = new FileResults(table, table2);
-		f1.setVisible(true);
+		fm1.closeFile();
+		
+		
+		
+		
+		
+		
+		FileManager fm2 = new FileManager(file3);
+		//creating instance of FileManager class to display Hashmap
+    	fm2.connectToFile();//connecting to file
+    	wordMap = fm2.getWords();
+    	
+    	JTable table3 = new JTable(5,2);
+    	
+    	//displaying hash map in table
+    	row=0;
+		for(Map.Entry<String,Integer> entry: wordMap.entrySet()){
+			if(row != 5) {
+				table3.setValueAt(entry.getKey(),row,0);
+			    table3.setValueAt(entry.getValue(),row,1);
+			    row++;
+			}//end if
+		}
+		
+		@SuppressWarnings("unused")
+		FileResults f1 = new FileResults(table, table2, table3);
+		
 		
 		//closing file 
-		fm1.closeFile();
+		fm2.closeFile();
   
-    }
+    }//end actionPerformed
     
 
-}
+}//end class
