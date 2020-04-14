@@ -33,7 +33,7 @@ public class FileResults extends JFrame implements ActionListener{
 		
 		JLabel file1Results = new JLabel("File 1 Results:       ");
 		JLabel file2Results = new JLabel("File 2 Results:       ");
-		JLabel file3Results = new JLabel("File 3 Results:		");
+		JLabel file3Results = new JLabel("File 3 Results:       ");
 		
 		frame.getContentPane().add(BorderLayout.NORTH, headingLabel);
  
@@ -69,9 +69,7 @@ public class FileResults extends JFrame implements ActionListener{
         //so that elements fit on screen best
         frame.pack();
         frame.setVisible(true); 
-        
-		
-		
+
 	}
 	
 	public void actionPerformed (ActionEvent e1) {
