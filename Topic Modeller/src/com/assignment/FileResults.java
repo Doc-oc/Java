@@ -51,17 +51,24 @@ public class FileResults extends JFrame implements ActionListener{
         right.fill = GridBagConstraints.HORIZONTAL;
         right.gridwidth = GridBagConstraints.REMAINDER;
         
-
-        panel.add(file1Results, left);
-        panel.add(table, right);
-        panel.add(file2Results, left);
-        panel.add(table2, right);
-        panel.add(file3Results, left);
-        panel.add(table3, right);
+        //creating scrollable view so tables display correctly
+        JScrollPane sp = new JScrollPane(table);
+        table.setPreferredScrollableViewportSize(getDimension(table));
         
-        /*panel.add(file3Results, left);
-        panel.add(file3Text, right);
-        */
+        JScrollPane sp1 = new JScrollPane(table2);
+        table2.setPreferredScrollableViewportSize(getDimension(table2));
+        
+        JScrollPane sp2 = new JScrollPane(table3);
+        table3.setPreferredScrollableViewportSize(getDimension(table3));
+        
+        //displaying elemenst on panel
+        panel.add(file1Results, left);
+        panel.add(sp, right);
+        panel.add(file2Results, left);
+        panel.add(sp1, right);
+        panel.add(file3Results, left);
+        panel.add(sp2, right);
+        
         //setting border around center so items are spread out
         panel.setBorder(BorderFactory.createEmptyBorder(30, 30, 30, 30));
         
@@ -75,4 +82,15 @@ public class FileResults extends JFrame implements ActionListener{
 	public void actionPerformed (ActionEvent e1) {
 		//todo
 	}
+	
+	//function that sets the dimension of the container 
+	//containing the scrollable view
+	public Dimension getDimension(JTable table) {
+		int numOfVisibleRows = 5;
+        
+        int cols = table.getColumnModel().getTotalColumnWidth();
+        int rows = table.getRowHeight() * numOfVisibleRows;
+        Dimension dim = new Dimension(cols, rows);
+		return dim;
+	}//end getDimension
 }//end class
