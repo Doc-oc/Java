@@ -14,7 +14,7 @@ public class StopWords {
 	//Constructor
 	public StopWords(HashMap<String, Integer> words){
 		this.words = words;
-		
+
 	}//End StopWords
 	
 	// get a connection to the file
@@ -25,7 +25,7 @@ public class StopWords {
 		}
 	
 	@SuppressWarnings("finally")
-	public HashMap<String, Integer> getStopWords() {
+	public HashMap<String, Integer> getStopWords(int total) {
 		String[] stopwords = new String[430  ];
 		
 	    try
@@ -35,10 +35,11 @@ public class StopWords {
 			while(input.hasNextLine())  
 			 {  
 				stopwords[i] = input.nextLine();
-	
 				if(words.containsKey(stopwords[i])) {
 					words.remove(stopwords[i]);
+					total = total - 1;
 				}
+				
 			    i++;
 			 }//end while
 		}//end try
@@ -49,6 +50,7 @@ public class StopWords {
 		}
 	    finally
 	    {
+	    	//System.out.println("After Stop Words: "+total);
 	        return words;
 	    }//end finally
     }//end getStopWords()

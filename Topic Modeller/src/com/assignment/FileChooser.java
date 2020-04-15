@@ -82,7 +82,8 @@ public class FileChooser extends JFrame implements ActionListener {
         
         searchButton.addActionListener(this);
         file1Text.addActionListener(this);
-        
+        file2Text.addActionListener(this);
+        file3Text.addActionListener(this);
 	
         
         //adding elements to gui

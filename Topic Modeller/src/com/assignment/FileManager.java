@@ -42,7 +42,7 @@ public class FileManager implements Comparator<Object> {
 		try {
 			//Scan File
 			input = new Scanner(file);
-			
+			int total = 0;
 			
 			//Get words from file
 			while(input.hasNext()) {
@@ -55,18 +55,22 @@ public class FileManager implements Comparator<Object> {
 				else {
 					wordFreq.put(word,  1);
 				}//end else
+				total++;
 			}//end while
 			
-			//sorting hash map in descending order to dispaly top 5 results
+			//sorting hash map in descending order
 			sortCount = wordFreq.entrySet()
 					.stream()
 					.sorted(Map.Entry.<String, Integer>comparingByValue().reversed())
 					.collect(toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
 			
-			
+			System.out.println("Before stop Words: "+total);
 			//creating instace of stopwords
 			StopWords s1 = new StopWords(sortCount);
-			s1.getStopWords();
+			
+			s1.getStopWords(total);
+			
+			
 		}//end try
 		
 		
