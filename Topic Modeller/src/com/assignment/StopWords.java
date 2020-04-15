@@ -2,6 +2,9 @@ package com.assignment;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.*;
 
 public class StopWords {
@@ -10,12 +13,15 @@ public class StopWords {
 	HashMap<String, Integer> words;
 	File stopWords;
 	Scanner input;
+	String stopEntered;
+
 
 	//Constructor
 	public StopWords(HashMap<String, Integer> words){
 		this.words = words;
 
 	}//End StopWords
+	
 	
 	// get a connection to the file
 		public File connectToFile()
@@ -26,7 +32,7 @@ public class StopWords {
 	
 	@SuppressWarnings("finally")
 	public HashMap<String, Integer> getStopWords(int total) {
-		String[] stopwords = new String[430  ];
+		String[] stopwords = new String[450];
 		
 	    try
 		{
@@ -50,10 +56,11 @@ public class StopWords {
 		}
 	    finally
 	    {
-	    	//System.out.println("After Stop Words: "+total);
+	    	System.out.println(stopwords);
 	        return words;
 	    }//end finally
     }//end getStopWords()
+	
 	
 }//end class
     

@@ -18,12 +18,18 @@ public class FileManager implements Comparator<Object> {
 	Scanner input;
 	HashMap<String, Integer> wordFreq = new HashMap<String, Integer>();
 	HashMap<String, Integer> sortCount= new HashMap<String, Integer>();
+	HashMap<String, Integer> sortAll= new HashMap<String, Integer>();
+	HashMap<String, Integer> totalWords;
 	
 	//constructorS
 	public FileManager(String fileName) {
 		this.fileName = fileName;
+
 	}
 	
+	public FileManager(HashMap<String, Integer>totalWords) {
+		this.totalWords = totalWords;
+	}
 	public int compare(Object o1, Object o2) {
 	
 		return 0;
@@ -64,7 +70,8 @@ public class FileManager implements Comparator<Object> {
 					.sorted(Map.Entry.<String, Integer>comparingByValue().reversed())
 					.collect(toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
 			
-			System.out.println("Before stop Words: "+total);
+			//System.out.println("Before stop Words: "+total);
+			
 			//creating instace of stopwords
 			StopWords s1 = new StopWords(sortCount);
 			
@@ -76,19 +83,28 @@ public class FileManager implements Comparator<Object> {
 		
 		catch (FileNotFoundException e)
 		{
+			
 			System.out.println("Error: " + e.getMessage());
 		}//end catch
 		
 		
 	    finally
 	    {
-	    	//System.out.println(sortCount);
+	    	System.out.println(sortCount);
 			return sortCount; 
 		      
 	    }//end finally
 		
 	}//end getWords()
 	
+	/*public HashMap<String, Integer> sortTotal() {
+		//sorting hash map in descending order
+		sortAll = totalWords.entrySet()
+				.stream()
+				.sorted(Map.Entry.<String, Integer>comparingByValue().reversed())
+				.collect(toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+		return sortAll;
+	}*/
 	
 	 void closeFile(){
 		input.close();

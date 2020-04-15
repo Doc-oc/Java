@@ -27,6 +27,7 @@ public class FileChooser extends JFrame implements ActionListener {
 	JFrame frame;
 	String[] words;
 	HashMap<String, Integer> wordMap= new HashMap<String, Integer>();
+	HashMap<String, Integer> totalWords = new HashMap<String, Integer>();
 
 	
     public FileChooser (String myTitle) {
@@ -119,7 +120,7 @@ public class FileChooser extends JFrame implements ActionListener {
     		wordMap = fm.getWords();
     		JTable table = setTable(wordMap);
     		fm.closeFile();
-	
+    	
     		
     		//creating a new instance fro file2
     		FileManager fm1 = new FileManager(file2);
@@ -128,8 +129,7 @@ public class FileChooser extends JFrame implements ActionListener {
     		wordMap = fm1.getWords();
     		JTable table2 = setTable(wordMap);
     		fm1.closeFile();
-		
-    		
+	
     		
     		//creating a new instance for file3
     		FileManager fm2 = new FileManager(file3);
@@ -140,10 +140,14 @@ public class FileChooser extends JFrame implements ActionListener {
     		//closing file 
     		fm2.closeFile();
     		
+
     		
     		@SuppressWarnings("unused")
     		FileResults f1 = new FileResults(table, table2, table3);
-		
+    		
+    		/*FileManager total = new FileManager(totalWords);
+    		totalWords = total.sortTotal();
+    		System.out.println(totalWords);*/
 		
     		
     	}//end try 
