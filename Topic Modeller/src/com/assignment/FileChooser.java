@@ -7,12 +7,12 @@ package com.assignment;
  * End Date: ..
  *******/
 import javax.swing.*;
-
+import javax.swing.table.DefaultTableModel;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
+//import java.io.File;
 import java.util.HashMap;
 //import java.util.Map;
 import java.util.Map;
@@ -26,8 +26,6 @@ public class FileChooser extends JFrame implements ActionListener {
 	JTextField file1Text, file2Text, file3Text;
 	JFrame frame;
 	String[] words;
-	
-	JTable table;	
 	HashMap<String, Integer> wordMap= new HashMap<String, Integer>();
 
 	
@@ -106,83 +104,82 @@ public class FileChooser extends JFrame implements ActionListener {
     }
    
     public void actionPerformed (ActionEvent e1) {
+    	//getting text from textfield
     	String file1 = file1Text.getText();
     	String file2 = file2Text.getText();
     	String file3 = file3Text.getText();
+    	 
     	
-    	FileManager fm = new FileManager(file1);
+    	try {
+    		//creating instance of FileManager class to display Hashmap
+    		FileManager fm = new FileManager(file1);
+    		
+    		fm.connectToFile();//connecting to file
+    		wordMap = fm.getWords();
+    		JTable table = setTable(wordMap);
+    		fm.closeFile();
+	
+    		
+    		//creating a new instance fro file2
+    		FileManager fm1 = new FileManager(file2);
+    		
+    		fm1.connectToFile();//connecting to file
+    		wordMap = fm1.getWords();
+    		JTable table2 = setTable(wordMap);
+    		fm1.closeFile();
+		
+    		
+    		
+    		//creating a new instance for file3
+    		FileManager fm2 = new FileManager(file3);
+    		
+    		fm2.connectToFile();//connecting to file
+    		wordMap = fm2.getWords();
+    		JTable table3 = setTable(wordMap);
+    		//closing file 
+    		fm2.closeFile();
+    		
+    		
+    		@SuppressWarnings("unused")
+    		FileResults f1 = new FileResults(table, table2, table3);
+		
+		
+    		
+    	}//end try 
     	
-    	//creating instance of FileManager class to display Hashmap
-    	fm.connectToFile();//connecting to file
-    	wordMap = fm.getWords();
     	
-    	JTable table = new JTable(5,2);
+    	catch(Exception e) {
+    		JOptionPane.showMessageDialog(this, "Error: Please Enter 3 Files to Compare with eachother!");
+    		System.out.println(e);
+    	}//end catch 
     	
-    	//displaying hash map in table
-    	int row=0;
-		for(Map.Entry<String,Integer> entry: wordMap.entrySet()){
-			if(row != 5) {
-				table.setValueAt(entry.getKey(),row,0);
-			    table.setValueAt(entry.getValue(),row,1);
-			    row++;
-			}//end if
-		}
-		fm.closeFile();
-		
-
-
-		
-		
-		
-		FileManager fm1 = new FileManager(file2);
-		//creating instance of FileManager class to display Hashmap
-    	fm1.connectToFile();//connecting to file
-    	wordMap = fm1.getWords();
-    	
-    	JTable table2 = new JTable(5,2);
-    	
-    	//displaying hash map in table
-    	row=0;
-		for(Map.Entry<String,Integer> entry: wordMap.entrySet()){
-			if(row != 5) {
-				table2.setValueAt(entry.getKey(),row,0);
-			    table2.setValueAt(entry.getValue(),row,1);
-			    row++;
-			}//end if
-		}
-		
-		fm1.closeFile();
-		
-		
-		
-		
-		
-		
-		FileManager fm2 = new FileManager(file3);
-		//creating instance of FileManager class to display Hashmap
-    	fm2.connectToFile();//connecting to file
-    	wordMap = fm2.getWords();
-    	
-    	JTable table3 = new JTable(5,2);
-    	
-    	//displaying hash map in table
-    	row=0;
-		for(Map.Entry<String,Integer> entry: wordMap.entrySet()){
-			if(row != 5) {
-				table3.setValueAt(entry.getKey(),row,0);
-			    table3.setValueAt(entry.getValue(),row,1);
-			    row++;
-			}//end if
-		}
-		
-		@SuppressWarnings("unused")
-		FileResults f1 = new FileResults(table, table2, table3);
-		
-		
-		//closing file 
-		fm2.closeFile();
   
     }//end actionPerformed
     
-
+    public JTable setTable(HashMap<String, Integer> wordMap) {
+    	
+    	//setting the header title names
+    	DefaultTableModel tableModel = new DefaultTableModel(
+    		new Object[] { "Word", "Count" }, 0
+    	);
+    	
+    	int row=0;
+    	//Entering Data into rows based off first 5 rows of sorted hash map
+    	for (Map.Entry<String, Integer> entry : wordMap.entrySet()) 
+    	{
+    		//ensuring the table ony has four rows
+    		if (row!=5) 
+    		{
+    	        tableModel.addRow(new Object[] { entry.getKey(), entry.getValue() });
+    	        row++;
+    	    }//end if
+        }//end for
+    	
+    	
+    	//creating a table based off the table Model
+    	JTable table = new JTable(tableModel);
+    
+   		return table;
+    }
+	
 }//end class
