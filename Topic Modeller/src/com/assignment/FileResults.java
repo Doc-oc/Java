@@ -8,7 +8,7 @@ package com.assignment;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.io.IOException;
+//import java.io.IOException;
 
 import javax.swing.*;
 
@@ -88,6 +88,8 @@ public class FileResults extends JFrame implements ActionListener{
         
         stopText.addActionListener(this);
         enterStop.addActionListener(this);
+        reset.addActionListener(this);
+        confirm.addActionListener(this);
         
         //displaying elemenst on panel
         panel.add(file1Results, left);
@@ -117,12 +119,28 @@ public class FileResults extends JFrame implements ActionListener{
 	
 	public void actionPerformed (ActionEvent e1) {
 		
-		String wordEntered = stopText.getText();
+		if(e1.getSource() == enterStop) {
+			String wordEntered = stopText.getText();
 		
+			StopWords sw = new StopWords();
+			sw.connectToFile();
+			sw.printToFile(wordEntered);
+			
+			//clearing textfield after entered
+			stopText.setText(null);
+		}//end if
 		
+		else if(e1.getSource() == reset) {
+			//losing frame to see new results
+			frame.dispose();
+		}
 		
-		
-	}
+		else if(e1.getSource() == confirm) {
+			
+		}
+	}//end actionPerformed
+	
+	
 	//function that sets the dimension of the container 
 	//containing the scrollable view
 	public Dimension getDimension(JTable table) {

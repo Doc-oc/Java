@@ -1,5 +1,6 @@
 package com.assignment;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -23,7 +24,12 @@ public class StopWords {
 	}//End StopWords
 	
 	
-	// get a connection to the file
+	public StopWords() {
+		//todo
+	}
+
+
+		// get a connection to the file
 		public File connectToFile()
 		{
 			stopWords = new File("stopwords.txt");
@@ -32,7 +38,7 @@ public class StopWords {
 	
 	@SuppressWarnings("finally")
 	public HashMap<String, Integer> getStopWords(int total) {
-		String[] stopwords = new String[450];
+		String[] stopwords = new String[500];
 		
 	    try
 		{
@@ -53,14 +59,31 @@ public class StopWords {
 		catch (FileNotFoundException e)
 		{
 			System.out.println("Error: " + e.getMessage());
-		}
+		}//end catch
 	    finally
 	    {
-	    	System.out.println(stopwords);
+	    	
 	        return words;
 	    }//end finally
     }//end getStopWords()
 	
 	
+	public void printToFile(String wordEntered) {
+		try {
+			
+			//Using File, Print Writer to write new stop words to file
+		    FileWriter f1 = new FileWriter(stopWords, true);
+		    BufferedWriter b1 = new BufferedWriter(f1);
+		    PrintWriter newLine = new PrintWriter(b1);
+		    newLine.println(wordEntered);
+		    newLine.close();
+		    
+		}//end try 
+		catch (IOException e1) 
+		{
+			//exception handling left as an exercise for the reader
+			System.out.println("Error: "+ e1);
+		}//end catch
+	}//end printtoFile()
 }//end class
     
