@@ -78,7 +78,7 @@ public class FileManager implements Comparator<Object> {
 		
 	    finally
 	    {
-
+	    	//System.out.println(sortCount);
 			return sortCount; 
 		      
 	    }//end finally
