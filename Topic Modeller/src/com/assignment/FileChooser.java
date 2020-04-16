@@ -144,6 +144,7 @@ public class FileChooser extends JFrame implements ActionListener {
     		wordMap = fm2.getWords();
     		wordMap.forEach((key, value) -> totalWords.merge(key, value, (v1, v2) -> v1+v2));
     		JTable table3 = setTable(wordMap);
+
     		//closing file 
     		fm2.closeFile();
     		
@@ -155,9 +156,8 @@ public class FileChooser extends JFrame implements ActionListener {
     		totalWords.clear();
     		
     		@SuppressWarnings("unused")
-    		FileResults f1 = new FileResults(table, table2, table3, table4);
-    		
-   
+			FileResults f1 = new FileResults(table, table2, table3, table4);
+    	
     		
     	}//end try 
     	

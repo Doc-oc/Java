@@ -9,6 +9,10 @@ package com.assignment;
 import java.awt.*;
 import java.awt.event.*;
 //import java.io.IOException;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 
 import javax.swing.*;
 
@@ -21,6 +25,8 @@ public class FileResults extends JFrame implements ActionListener{
 	JLabel headingLabel;
 	JTextField stopText;
 	JButton enterStop, reset, confirm;
+	//JTable table, table2, table3, table4;
+
 	private static final long serialVersionUID = 1L;
 
 	//constructor
@@ -32,13 +38,13 @@ public class FileResults extends JFrame implements ActionListener{
         BorderLayout bl1 = new BorderLayout();
 		getContentPane().setLayout(bl1);
 		
-		headingLabel = new JLabel("Results are as Follows: ");
+		headingLabel = new JLabel("Results: Top 5 most common words From each file!");
 		headingLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JLabel file1Results = new JLabel("File 1 Results:       ");
 		JLabel file2Results = new JLabel("File 2 Results:       ");
 		JLabel file3Results = new JLabel("File 3 Results:       ");
-		JLabel totalResults = new JLabel("Total Results of 3 Files:       ");
+		JLabel totalResults = new JLabel("Top 5 words from 3 Files:       ");
 		JLabel space = new JLabel("                      ");
 		
 		
@@ -46,7 +52,12 @@ public class FileResults extends JFrame implements ActionListener{
 		JLabel stopWords = new JLabel("If a word from table is not informative, Enter Here to Remove:  ");
 		enterStop = new JButton("Enter");
 		reset = new JButton("Reset");
+		reset.setBackground(Color.red);
+		reset.setForeground(Color.white);
+		
 		confirm = new JButton("Confirm");
+		
+		
 		
 		stopWords.setHorizontalAlignment(SwingConstants.CENTER);
 
@@ -124,7 +135,7 @@ public class FileResults extends JFrame implements ActionListener{
         frame.setVisible(true); 
 
 	}
-	
+	 @Override
 	public void actionPerformed (ActionEvent e1) {
 		
 		if(e1.getSource() == enterStop) {
@@ -144,7 +155,9 @@ public class FileResults extends JFrame implements ActionListener{
 		}
 		
 		else if(e1.getSource() == confirm) {
+			ResultWriter rw = new ResultWriter();
 			
+		
 		}
 	}//end actionPerformed
 	
