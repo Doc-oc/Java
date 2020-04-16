@@ -105,12 +105,16 @@ public class FileChooser extends JFrame implements ActionListener {
         
     }
    
-    public void actionPerformed (ActionEvent e1) {
+    public FileChooser() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public void actionPerformed (ActionEvent e1) {
     	//getting text from textfield
     	String file1 = file1Text.getText();
     	String file2 = file2Text.getText();
     	String file3 = file3Text.getText();
-    	 
+    	
     	
     	try {
     		//creating instance of FileManager class to display Hashmap
@@ -118,6 +122,7 @@ public class FileChooser extends JFrame implements ActionListener {
     		
     		fm.connectToFile();//connecting to file
     		wordMap = fm.getWords();
+    		wordMap.forEach((key, value) -> totalWords.merge(key, value, (v1, v2) -> v1+v2));
     		JTable table = setTable(wordMap);
     		fm.closeFile();
     	
@@ -127,6 +132,7 @@ public class FileChooser extends JFrame implements ActionListener {
     		
     		fm1.connectToFile();//connecting to file
     		wordMap = fm1.getWords();
+    		wordMap.forEach((key, value) -> totalWords.merge(key, value, (v1, v2) -> v1+v2));
     		JTable table2 = setTable(wordMap);
     		fm1.closeFile();
 	
@@ -136,19 +142,22 @@ public class FileChooser extends JFrame implements ActionListener {
     		
     		fm2.connectToFile();//connecting to file
     		wordMap = fm2.getWords();
+    		wordMap.forEach((key, value) -> totalWords.merge(key, value, (v1, v2) -> v1+v2));
     		JTable table3 = setTable(wordMap);
     		//closing file 
     		fm2.closeFile();
     		
-
+    		
+    		FileManager tw = new FileManager(totalWords);
+    		totalWords = tw.sortMap(totalWords);
+    		JTable table4 = setTable(totalWords);
+	        System.out.println(totalWords);
+    		totalWords.clear();
     		
     		@SuppressWarnings("unused")
-    		FileResults f1 = new FileResults(table, table2, table3);
+    		FileResults f1 = new FileResults(table, table2, table3, table4);
     		
-    		/*FileManager total = new FileManager(totalWords);
-    		totalWords = total.sortTotal();
-    		System.out.println(totalWords);*/
-		
+   
     		
     	}//end try 
     	

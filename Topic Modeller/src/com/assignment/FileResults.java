@@ -24,7 +24,7 @@ public class FileResults extends JFrame implements ActionListener{
 	private static final long serialVersionUID = 1L;
 
 	//constructor
-	public FileResults(JTable table, JTable table2, JTable table3) {
+	public FileResults(JTable table, JTable table2, JTable table3, JTable table4) {
 		
 		frame = new JFrame();
         JPanel panel = new JPanel();
@@ -38,7 +38,10 @@ public class FileResults extends JFrame implements ActionListener{
 		JLabel file1Results = new JLabel("File 1 Results:       ");
 		JLabel file2Results = new JLabel("File 2 Results:       ");
 		JLabel file3Results = new JLabel("File 3 Results:       ");
+		JLabel totalResults = new JLabel("Total Results of 3 Files:       ");
 		JLabel space = new JLabel("                      ");
+		
+		
 		stopText = new JTextField(15);
 		JLabel stopWords = new JLabel("If a word from table is not informative, Enter Here to Remove:  ");
 		enterStop = new JButton("Enter");
@@ -86,6 +89,9 @@ public class FileResults extends JFrame implements ActionListener{
         JScrollPane sp2 = new JScrollPane(table3);
         table3.setPreferredScrollableViewportSize(getDimension(table3));
         
+        JScrollPane sp3 = new JScrollPane(table4);
+        table4.setPreferredScrollableViewportSize(getDimension(table4));
+        
         stopText.addActionListener(this);
         enterStop.addActionListener(this);
         reset.addActionListener(this);
@@ -98,6 +104,8 @@ public class FileResults extends JFrame implements ActionListener{
         panel.add(sp1, right);
         panel.add(file3Results, left);
         panel.add(sp2, right);
+        panel.add(totalResults, left);
+        panel.add(sp3, right);
         panel.add(space, center);
         panel.add(stopWords, center);
         panel.add(stopText, left);
@@ -131,7 +139,7 @@ public class FileResults extends JFrame implements ActionListener{
 		}//end if
 		
 		else if(e1.getSource() == reset) {
-			//losing frame to see new results
+			//losing frame to see new result
 			frame.dispose();
 		}
 		
