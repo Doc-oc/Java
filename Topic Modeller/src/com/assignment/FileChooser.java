@@ -157,7 +157,7 @@ public class FileChooser extends JFrame implements ActionListener {
     		
     		@SuppressWarnings("unused")
 			FileResults f1 = new FileResults(table, table2, table3, table4);
-    	
+    		
     		
     	}//end try 
     	

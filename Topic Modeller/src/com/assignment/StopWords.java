@@ -29,16 +29,16 @@ public class StopWords {
 	}
 
 
-		// get a connection to the file
-		public File connectToFile()
-		{
-			stopWords = new File("stopwords.txt");
-			return stopWords;
-		}
+	// get a connection to the file
+	public File connectToFile()
+	{
+		stopWords = new File("stopwords.txt");
+		return stopWords;
+	}
 	
 	@SuppressWarnings("finally")
 	public HashMap<String, Integer> getStopWords(int total) {
-		String[] stopwords = new String[500];
+		String[] stopwords = new String[550];
 		
 	    try
 		{
