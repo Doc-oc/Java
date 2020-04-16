@@ -15,23 +15,8 @@ public class ResultWriter {
 	public ResultWriter(){
 		
 	}//end 
-	
-	//connecting to a file
-	public File connectToFile() {
-	try {
-			file = new File("results.txt");
-			if(!file.exists()) {
-				file.createNewFile();
-			}
-		} catch(Exception e) {
-			System.out.print("File"+e);
-		}
-	
-		return file;
-	}//end connectToFile
-		
 
-	public void writeToFile(JTable table) {
+	public void writeToFile(JTable table, JTable table2, JTable table3, JTable table4) {
 		try {
 
 			file = new File("results.txt");
@@ -40,24 +25,65 @@ public class ResultWriter {
 				}
 			
 	
-			FileWriter f1 = new FileWriter(file, true);
+			FileWriter f1 = new FileWriter(file, false);
 			BufferedWriter b1 = new BufferedWriter(f1);
-			PrintWriter newLine = new PrintWriter(b1);
 			
+			//File 1 Resultrs
+			b1.write("Results From Files: \n");
+			b1.write("\nFile1: ");
 			for (int row = 0; row < table.getRowCount(); row++) {
+				b1.write("\n");
 			    for (int col = 0; col < table.getColumnCount(); col++) {
 					if (table.getValueAt(row, col) != null) {
-						newLine.println(table.getValueAt(row, col)+"\t");
-						
+						b1.write(table.getValueAt(row, col) + "\t" );
+					}
+				}//end j for
+			}//end i for
+		
+			//File 2 Results
+			b1.write("\n");
+			b1.write("\nFile2: ");
+			for (int row = 0; row < table2.getRowCount(); row++) {
+				b1.write("\n");
+			    for (int col = 0; col < table2.getColumnCount(); col++) {
+					if (table2.getValueAt(row, col) != null) {
+						b1.write(table2.getValueAt(row , col) + "\t" );
+					}
+				}//end j for
+			}//end i for
+			
+			//File 3 resuts
+			b1.write("\n");
+			b1.write("\nFile3: ");
+			for (int row = 0; row < table3.getRowCount(); row++) {
+				b1.write("\n");
+			    for (int col = 0; col < table3.getColumnCount(); col++) {
+					if (table3.getValueAt(row, col) != null) {
+						b1.write(table3.getValueAt(row, col) + "\t" );
 					}
 				}
 			}
-			newLine.close();
+			
+			//total results
+			b1.write("\n");
+			b1.write("\nTotal Results: ");
+			for (int row = 0; row < table4.getRowCount(); row++) {
+				b1.write("\n");
+			    for (int col = 0; col < table4.getColumnCount(); col++) {
+					if (table4.getValueAt(row, col) != null) {
+						b1.write(table4.getValueAt(row, col) + "\t" );
+					}
+				}//end j for
+			}//end i for
+			
+			//closing writers
+			b1.close();
+			f1.close();
 			
 	
 			
 		} catch(Exception e) {
-			e.printStackTrace();;
+			System.out.println("Error: " + e);
 		}//end catch
 	}//
 }//end class
