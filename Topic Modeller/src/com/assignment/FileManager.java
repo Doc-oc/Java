@@ -89,8 +89,7 @@ public class FileManager implements Comparator<Object> {
 	
 	public HashMap<String, Integer> sortMap(HashMap<String, Integer> wordCount){
 		//sorting hash map in descending order
-		sortCount = wordCount.entrySet()
-				.stream()
+		sortCount = wordCount.entrySet().stream()
 				.sorted(Map.Entry.<String, Integer>comparingByValue().reversed())
 				.collect(toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
 		
