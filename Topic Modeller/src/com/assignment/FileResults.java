@@ -25,12 +25,17 @@ public class FileResults extends JFrame implements ActionListener{
 	JLabel headingLabel;
 	JTextField stopText;
 	JButton enterStop, reset, confirm;
-	//JTable table, table2, table3, table4;
+	JTable table, table2, table3, table4;
 
 	private static final long serialVersionUID = 1L;
 
 	//constructor
 	public FileResults(JTable table, JTable table2, JTable table3, JTable table4) {
+		
+		this.table = table;
+		this.table2 = table2;
+		this.table3 = table3;
+		this.table4 = table4;
 		
 		frame = new JFrame();
         JPanel panel = new JPanel();
@@ -152,12 +157,13 @@ public class FileResults extends JFrame implements ActionListener{
 		else if(e1.getSource() == reset) {
 			//losing frame to see new result
 			frame.dispose();
-		}
+		}//enbd if
 		
 		else if(e1.getSource() == confirm) {
 			ResultWriter rw = new ResultWriter();
-			
-		
+			rw.writeToFile(table, table2, table3, table4);
+			JOptionPane.showMessageDialog(this, "Results Written to File named \"results.txt\"");
+			frame.dispose();
 		}
 	}//end actionPerformed
 	
