@@ -40,18 +40,24 @@ public class FileChooser extends JFrame implements ActionListener {
 
         
         //heading
-        heading = new JLabel("Welcome to Topic Modeller!  Enter File names to check if they are related!");
+        heading = new JLabel("Welcome to Topic Modeller! Enter 3 different files To see if they are related!");
+        heading.setBorder(BorderFactory.createEmptyBorder(15,15,0,15));
         
         //Labels
-        fileLabel1 = new JLabel("File Name: ");
-        fileLabel2 = new JLabel("File Name: ");
-        fileLabel3 = new JLabel("File Name: ");
+        fileLabel1 = new JLabel("File 1 Name: ");
+        fileLabel2 = new JLabel("File 2 Name: ");
+        fileLabel3 = new JLabel("File 3 Name: ");
         
         //Text Field Elements
         file1Text = new JTextField(20);
+        file1Text.setToolTipText("Eg. file1name.txt");
+        
         file2Text = new JTextField(20);
+        file2Text.setToolTipText("Eg. file2name.txt");
+        
         file3Text = new JTextField(20);
-
+        file3Text.setToolTipText("Eg. file3name.txt");
+        
         frame.getContentPane().add(BorderLayout.NORTH, heading);
         frame.getContentPane().add(BorderLayout.SOUTH, searchButton);
        
@@ -142,6 +148,8 @@ public class FileChooser extends JFrame implements ActionListener {
     		
     		fm2.connectToFile();//connecting to file
     		wordMap = fm2.getWords();
+    		
+    		//
     		wordMap.forEach((key, value) -> totalWords.merge(key, value, (v1, v2) -> v1+v2));
     		JTable table3 = setTable(wordMap);
 
@@ -157,6 +165,7 @@ public class FileChooser extends JFrame implements ActionListener {
     		
     		@SuppressWarnings("unused")
 			FileResults f1 = new FileResults(table, table2, table3, table4);
+    		
     		
     		
     	}//end try 
