@@ -126,7 +126,7 @@ public class FileResults extends JFrame implements ActionListener{
 	    JLabel gradeLabel = new JLabel("Based on the Overlapping of the Top 8 words from each file, a grade has ");
 	    JLabel gradeLabel2 = new JLabel("been estimated that these  ");
 	    JLabel gradeLabel3 = new JLabel("Grade: "+grade+"%,");
-	    JLabel gradeLabel4 = new JLabel("files are Likely to be about the same topic!!");
+	    JLabel gradeLabel4 = new JLabel("files are Likely to be about the same topic!");
 	   gradeLabel3.setHorizontalAlignment(SwingConstants.CENTER);
 	   gradeLabel3.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
 	   gradeLabel3.setForeground(Color.blue);
