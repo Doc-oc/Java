@@ -13,6 +13,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.util.HashMap;
 
 import javax.swing.*;
 
@@ -26,6 +27,7 @@ public class FileResults extends JFrame implements ActionListener{
 	JTextField stopText;
 	JButton enterStop, reset, confirm;
 	JTable table, table2, table3, table4;
+	HashMap<String, Integer>finalOverLap = new HashMap<String,Integer>();
 
 	private static final long serialVersionUID = 1L;
 
@@ -43,7 +45,7 @@ public class FileResults extends JFrame implements ActionListener{
         BorderLayout bl1 = new BorderLayout();
 		getContentPane().setLayout(bl1);
 		
-		headingLabel = new JLabel("Results: Top 5 most common words From each file!");
+		headingLabel = new JLabel("Results are as follows based on the top 8 words from each file!");
 		headingLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JLabel file1Results = new JLabel("File 1 Results:       ");
@@ -62,8 +64,7 @@ public class FileResults extends JFrame implements ActionListener{
 		
 		confirm = new JButton("Confirm");
 		
-		
-		
+
 		stopWords.setHorizontalAlignment(SwingConstants.CENTER);
 
 		
@@ -113,6 +114,25 @@ public class FileResults extends JFrame implements ActionListener{
         reset.addActionListener(this);
         confirm.addActionListener(this);
         
+       
+        Analyse a1 = new Analyse(table);
+		a1.getOverlap(table);
+	    a1.getOverlap(table2);
+	    HashMap<String, Integer> finalOverLap = a1.getOverlap(table3);
+	    
+	    System.out.println("FO: "+finalOverLap);
+	    float grade = a1.overLapPercentage(finalOverLap);
+	    
+	    JLabel gradeLabel = new JLabel("Based on the Overlapping of the Top 8 words from each file, a grade has ");
+	    JLabel gradeLabel2 = new JLabel("been estimated that these  ");
+	    JLabel gradeLabel3 = new JLabel("Grade: "+grade+"%,");
+	    JLabel gradeLabel4 = new JLabel("files are Likely to be about the same topic!!");
+	   gradeLabel3.setHorizontalAlignment(SwingConstants.CENTER);
+	   gradeLabel3.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
+	   gradeLabel3.setForeground(Color.blue);
+	   
+        
+	    
         //displaying elemenst on panel
         panel.add(file1Results, left);
         panel.add(sp, right);
@@ -120,8 +140,12 @@ public class FileResults extends JFrame implements ActionListener{
         panel.add(sp1, right);
         panel.add(file3Results, left);
         panel.add(sp2, right);
-        panel.add(totalResults, left);
-        panel.add(sp3, right);
+        
+        panel.add(gradeLabel, center);
+        panel.add(gradeLabel2, left);
+        panel.add(gradeLabel4, right);
+        panel.add(gradeLabel3, south);
+        
         panel.add(space, center);
         panel.add(stopWords, center);
         panel.add(stopText, left);
@@ -139,6 +163,9 @@ public class FileResults extends JFrame implements ActionListener{
         frame.pack();
         frame.setVisible(true); 
 
+        
+       
+       
 	}
 	 @Override
 	public void actionPerformed (ActionEvent e1) {
