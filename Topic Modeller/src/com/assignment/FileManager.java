@@ -18,7 +18,6 @@ public class FileManager implements Comparator<Object> {
 	Scanner input;
 	HashMap<String, Integer> wordFreq = new HashMap<String, Integer>();
 	HashMap<String, Integer> sortCount= new HashMap<String, Integer>();
-	HashMap<String, Integer> sortAll= new HashMap<String, Integer>();
 	HashMap<String, Integer> totalWords = new HashMap<String , Integer>();
 	int total=0;
 	
@@ -87,6 +86,8 @@ public class FileManager implements Comparator<Object> {
 		
 	}//end getWords()
 	
+	//for this function I did some research into hashmaps and how they work 
+	//this is what I could come up with to sort an array
 	public HashMap<String, Integer> sortMap(HashMap<String, Integer> wordCount){
 		//sorting hash map in descending order
 		sortCount = wordCount.entrySet().stream()

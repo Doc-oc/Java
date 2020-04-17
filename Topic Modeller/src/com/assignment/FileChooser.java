@@ -182,7 +182,7 @@ public class FileChooser extends JFrame implements ActionListener {
     	for (Map.Entry<String, Integer> entry : wordMap.entrySet()) 
     	{
     		//ensuring the table ony has four rows
-    		if (row!=5) 
+    		if (row!=8) 
     		{
     	        tableModel.addRow(new Object[] { entry.getKey(), entry.getValue() });
     	        row++;

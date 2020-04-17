@@ -142,20 +142,21 @@ public class FileResults extends JFrame implements ActionListener{
 	}
 	 @Override
 	public void actionPerformed (ActionEvent e1) {
-		
+		 
 		if(e1.getSource() == enterStop) {
 			String wordEntered = stopText.getText();
-		
 			StopWords sw = new StopWords();
 			sw.connectToFile();
 			sw.printToFile(wordEntered);
-			
 			//clearing textfield after entered
 			stopText.setText(null);
+			JOptionPane.showMessageDialog(this, "Click Reset to see new results!");
+
 		}//end if
 		
 		else if(e1.getSource() == reset) {
 			//losing frame to see new result
+			
 			frame.dispose();
 		}//enbd if
 		
