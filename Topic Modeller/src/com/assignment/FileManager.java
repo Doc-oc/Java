@@ -1,7 +1,12 @@
 /*******
- * Class that manages the connectivity and reading of files
- * Author: Dylan O'Connor  
+ * Class that manages the connectivity and reading of files from fileChooser class
+ * Class uses hashmaps to count words from files 
+ * Key , value was the best way that I could do this
+ * This class also sorts the hashmap into descending order
  * 
+ * Author: Dylan O'Connor  
+ * Start Date: 30/03/2020
+ * End Date: 20/04/2020
  ****/
 
 package com.assignment;
@@ -21,7 +26,7 @@ public class FileManager implements Comparator<Object> {
 	HashMap<String, Integer> totalWords = new HashMap<String , Integer>();
 	int total=0;
 	
-	//constructorS
+	//constructors
 	public FileManager(String fileName) {
 		this.fileName = fileName;
 
@@ -31,11 +36,11 @@ public class FileManager implements Comparator<Object> {
 		this.totalWords = totalWords;
 	}
 	
-
+	//method needed for compare<object>
 	public int compare(Object o1, Object o2) {
 	
 		return 0;
-	}
+	}//
 	
 	//connecting to a file
 	void connectToFile() {
@@ -65,13 +70,12 @@ public class FileManager implements Comparator<Object> {
 			}//end while
 			
 		
-			
 		}//end try
 		
 		
 		catch (FileNotFoundException e)
 		{
-			
+			//displayig error
 			System.out.println("Error: " + e.getMessage());
 		}//end catch
 		
@@ -87,24 +91,31 @@ public class FileManager implements Comparator<Object> {
 	}//end getWords()
 	
 	//for this function I did some research into hashmaps and how they work 
-	//this is what I could come up with to sort an array
+	//I bought a java book and did online research on websites such as geeksforgeek etc.
+	//
+	//this is the code that I could come up with to sort an array
+	//There is probably a more efficient way of doing this but this was the best I could do
 	public HashMap<String, Integer> sortMap(HashMap<String, Integer> wordCount){
+		
 		//sorting hash map in descending order
 		sortCount = wordCount.entrySet().stream()
+				//comparing values in reversed order
 				.sorted(Map.Entry.<String, Integer>comparingByValue().reversed())
+				//collect entries plus displaying them in new order which is descending
 				.collect(toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
 		
 		//System.out.println("Before stop Words: "+total);
 		
 		//creating instace of stopwords
 		StopWords s1 = new StopWords(sortCount);
-		s1.getStopWords(total);
+		s1.getStopWords();//passing sorted map to remove stop words
 		
 		return sortCount;
-	}
+	}//end sortMap
 	
-	
+	//close file 
 	 void closeFile(){
 		input.close();
 	 }//end closeFile
-}
+	 
+}//end FileManager
