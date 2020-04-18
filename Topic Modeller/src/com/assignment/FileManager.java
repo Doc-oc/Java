@@ -59,7 +59,23 @@ public class FileManager implements Comparator<Object> {
 			//Get words from file
 			while(input.hasNext()) {
 				String word = input.next();
+				word = word.toLowerCase();
+				
+				//removing punctuation
+				if(word.startsWith("“")) {
+					word = word.replace(("“"), "");
+				}
+				else if (word.endsWith("”")){
+					word = word.replace("”", "");
+				}
+				else if(word.endsWith(".")) {
+					word = word.replace(".", "");
+				}
+				else if(word.endsWith(",")) {
+					word = word.replace(",", "");
+				}
 				//if Hash Map already has word increment counter
+				
 				if(wordFreq.containsKey(word)) {
 					int counter = wordFreq.get(word)+ 1;
 					wordFreq.put(word, counter);
