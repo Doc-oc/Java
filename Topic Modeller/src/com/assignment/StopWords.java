@@ -49,8 +49,7 @@ public class StopWords {
 				stopwords[i] = input.nextLine();
 				if(words.containsKey(stopwords[i])) {
 					words.remove(stopwords[i]);
-					total = total - 1;
-				}
+				}//end if
 				
 			    i++;
 			 }//end while

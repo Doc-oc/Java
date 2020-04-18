@@ -3,9 +3,6 @@ package com.assignment;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
-
-import java.io.PrintWriter;
-
 import javax.swing.JTable;
 
 public class ResultWriter {

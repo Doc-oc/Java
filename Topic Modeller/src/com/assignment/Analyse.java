@@ -34,7 +34,7 @@ public class Analyse {
 			}//end else
 		}
 		
-		System.out.println("OverLap: "+overLap);
+		//System.out.println("OverLap: "+overLap);
 		
 		return overLap;
 	}
@@ -47,12 +47,11 @@ public class Analyse {
 		for (Map.Entry<String, Integer> entry : overlap.entrySet()) {
 			if(entry.getValue() >= 2) {
 				counter = counter + 1;
-				System.out.println(counter);
 			}
 		}
 		
 		overlapPercent = ((counter / overlap.size())*100);
-		System.out.println(overlapPercent);
+		//System.out.println(overlapPercent);
 		
 		return overlapPercent;
 	}
