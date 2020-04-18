@@ -12,6 +12,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 //import java.io.File;
 import java.util.HashMap;
 //import java.util.Map;
@@ -116,67 +117,68 @@ public class FileChooser extends JFrame implements ActionListener {
 	}
 
 	public void actionPerformed (ActionEvent e1) {
-    	//getting text from textfield
-    	String file1 = file1Text.getText();
-    	String file2 = file2Text.getText();
-    	String file3 = file3Text.getText();
-    	
-    	
-    	try {
-    		//creating instance of FileManager class to display Hashmap
-    		FileManager fm = new FileManager(file1);
+		if (e1.getSource() == searchButton) {
+			//getting text from textfield
+			
+			String file1 = file1Text.getText();
+			String file2 = file2Text.getText();
+			String file3 = file3Text.getText();
+
+			try {
+				//creating instance of FileManager class to display Hashmap
+				FileManager fm = new FileManager(file1);
     		
-    		fm.connectToFile();//connecting to file
-    		wordMap = fm.getWords();
-    		wordMap.forEach((key, value) -> totalWords.merge(key, value, (v1, v2) -> v1+v2));
-    		JTable table = setTable(wordMap);
-    		fm.closeFile();
+				fm.connectToFile();//connecting to file
+				wordMap = fm.getWords();
+				wordMap.forEach((key, value) -> totalWords.merge(key, value, (v1, v2) -> v1+v2));
+				JTable table = setTable(wordMap);
+				fm.closeFile();
     	
     		
-    		//creating a new instance fro file2
-    		FileManager fm1 = new FileManager(file2);
+				//creating a new instance fro file2
+				FileManager fm1 = new FileManager(file2);
     		
-    		fm1.connectToFile();//connecting to file
-    		wordMap = fm1.getWords();
-    		wordMap.forEach((key, value) -> totalWords.merge(key, value, (v1, v2) -> v1+v2));
-    		JTable table2 = setTable(wordMap);
-    		fm1.closeFile();
+				fm1.connectToFile();//connecting to file
+				wordMap = fm1.getWords();
+				wordMap.forEach((key, value) -> totalWords.merge(key, value, (v1, v2) -> v1+v2));
+				JTable table2 = setTable(wordMap);
+				fm1.closeFile();
 	
     		
-    		//creating a new instance for file3
-    		FileManager fm2 = new FileManager(file3);
+				//creating a new instance for file3
+				FileManager fm2 = new FileManager(file3);
     		
-    		fm2.connectToFile();//connecting to file
-    		wordMap = fm2.getWords();
+				fm2.connectToFile();//connecting to file
+				wordMap = fm2.getWords();
     		
-    		//
-    		wordMap.forEach((key, value) -> totalWords.merge(key, value, (v1, v2) -> v1+v2));
-    		JTable table3 = setTable(wordMap);
+				//
+				wordMap.forEach((key, value) -> totalWords.merge(key, value, (v1, v2) -> v1+v2));
+				JTable table3 = setTable(wordMap);
 
-    		//closing file 
-    		fm2.closeFile();
+				//closing file 
+				fm2.closeFile();
     		
     		
-    		FileManager tw = new FileManager(totalWords);
-    		totalWords = tw.sortMap(totalWords);
-    		JTable table4 = setTable(totalWords);
-	        System.out.println(totalWords);
-    		totalWords.clear();
+				FileManager tw = new FileManager(totalWords);
+				totalWords = tw.sortMap(totalWords);
+				JTable table4 = setTable(totalWords);
+				System.out.println(totalWords);
+				totalWords.clear();
     		
-    		@SuppressWarnings("unused")
-			FileResults f1 = new FileResults(table, table2, table3, table4);
+					@SuppressWarnings("unused")
+				FileResults f1 = new FileResults(table, table2, table3, table4);
     		
     		
     		
-    	}//end try 
+			}//end try 
     	
     	
-    	catch(Exception e) {
-    		JOptionPane.showMessageDialog(this, "Error: Please Enter 3 Files to Compare with eachother!");
-    		System.out.println(e);
-    	}//end catch 
+			catch(Exception e) {
+				JOptionPane.showMessageDialog(this, "Error: You Must enter 3 Valid Files to Compare with eachother!");
+				System.out.println(e);
+			}//end catch 
     	
-  
+		}//end if
     }//end actionPerformed
     
     public JTable setTable(HashMap<String, Integer> wordMap) {
