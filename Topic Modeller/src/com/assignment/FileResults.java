@@ -1,7 +1,13 @@
 /***********
+ * This class is the GUI for displaying the results of the files
+ * This class displays most common words of the files in 3 tables
+ * Followed by a percentage that is produced based on the number of words that overlap
+ * You can reset or confirm the results, if reset reults will be recalculated
+ * If confirmed the resulst will be written to a file called results.txt
  * 
  * Author: Dylan O'Connor
- * TBD
+ * Date Started: 30/04/2020
+ * End Date: 20/04/2020
  **********/
 
 package com.assignment;
@@ -30,23 +36,29 @@ public class FileResults extends JFrame implements ActionListener{
 	//constructor
 	public FileResults(JTable table, JTable table2, JTable table3) {
 		
+		//Setting table values
 		this.table = table;
 		this.table2 = table2;
 		this.table3 = table3;
 		
+		//creating new jframe and jpanel
 		frame = new JFrame();
         JPanel panel = new JPanel();
 
+        //creating first layout which is a border layout
         BorderLayout bl1 = new BorderLayout();
 		getContentPane().setLayout(bl1);
 		
+		//heading label displayed at the top of the page
 		headingLabel = new JLabel("Results are as follows based on the top 8 words from each file!");
 		headingLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		
+		//Labels on display
 		JLabel file1Results = new JLabel("File 1 Results:       ");
 		JLabel file2Results = new JLabel("File 2 Results:       ");
 		JLabel file3Results = new JLabel("File 3 Results:       ");
-
+		
+		//creating a line break, not efficient but effective
 		JLabel space = new JLabel("                      ");
 		
 		
@@ -59,32 +71,34 @@ public class FileResults extends JFrame implements ActionListener{
 		
 		confirm = new JButton("Confirm");
 		
-
+		//Centering stopWords text field
 		stopWords.setHorizontalAlignment(SwingConstants.CENTER);
 
-		
+		//setting heading label to the top of the window
 		frame.getContentPane().add(BorderLayout.NORTH, headingLabel);
  
         //Setting up gridlayout
         panel.setLayout(new GridBagLayout());
         frame.getContentPane().add(panel);
         
-        //leftside elements
+        //leftside elements constraints
         GridBagConstraints left = new GridBagConstraints();
         left.anchor = GridBagConstraints.EAST;
         
-        //right side elements
+        //right side elements constraints
         GridBagConstraints right = new GridBagConstraints();
         right.weightx = 2.0;
         right.fill = GridBagConstraints.HORIZONTAL;
         right.gridwidth = GridBagConstraints.REMAINDER;
         
+        //center elements constraints
         GridBagConstraints center = new GridBagConstraints();
         center.fill=GridBagConstraints.BOTH;
         center.anchor=GridBagConstraints.CENTER;
         center.weightx = 1.0;
         center.gridwidth = GridBagConstraints.REMAINDER;
         
+        //south elemenets constraints
         GridBagConstraints south = new GridBagConstraints();
         south.weightx = 1.0;
         center.anchor=GridBagConstraints.SOUTH;
@@ -101,12 +115,14 @@ public class FileResults extends JFrame implements ActionListener{
         JScrollPane sp2 = new JScrollPane(table3);
         table3.setPreferredScrollableViewportSize(getDimension(table3));
 
+        //Adding action listeners to buttons and textfields
         stopText.addActionListener(this);
         enterStop.addActionListener(this);
         reset.addActionListener(this);
         confirm.addActionListener(this);
         
-       
+       //Creating an instace of analyse 
+       //call overlapping method to get overlapping words and percentage
         Analyse a1 = new Analyse(table);
 		a1.getOverlap(table);
 	    a1.getOverlap(table2);
@@ -114,14 +130,16 @@ public class FileResults extends JFrame implements ActionListener{
 	    
 	    //System.out.println("FO: "+finalOverLap);
 	    grade = a1.overLapPercentage(finalOverLap);
-	    
+
+	    //Labels Explain Grading system
 	    JLabel gradeLabel = new JLabel("Based on the Overlapping of the Top 8 words from each file, a grade has ");
 	    JLabel gradeLabel2 = new JLabel("been estimated that these  ");
 	    JLabel gradeLabel3 = new JLabel("Grade: "+grade+"% ");
 	    JLabel gradeLabel4 = new JLabel("files are Likely to be about the same topic!");
-	   gradeLabel3.setHorizontalAlignment(SwingConstants.CENTER);
-	   gradeLabel3.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
-	   gradeLabel3.setForeground(Color.blue);
+	    //Centering grade Label with borders
+	    gradeLabel3.setHorizontalAlignment(SwingConstants.CENTER);
+	    gradeLabel3.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
+	    gradeLabel3.setForeground(Color.blue);
 	   
         
 	    
@@ -163,25 +181,26 @@ public class FileResults extends JFrame implements ActionListener{
 	public void actionPerformed (ActionEvent e1) {
 		 
 		if(e1.getSource() == enterStop) {
+			//getting stop word entered
 			String wordEntered = stopText.getText();
 			StopWords sw = new StopWords();
-			sw.connectToFile();
-			sw.printToFile(wordEntered);
+			sw.connectToFile();//connection to file
+			sw.printToFile(wordEntered);//method to print word to file
 			//clearing textfield after entered
-			stopText.setText(null);
+			stopText.setText(null);//clearin text afterwards
 			JOptionPane.showMessageDialog(this, "Click Reset to see new results!");
 
 		}//end if
 		
 		else if(e1.getSource() == reset) {
 			//losing frame to see new result
-			
 			frame.dispose();
 		}//enbd if
 		
 		else if(e1.getSource() == confirm) {
+			//Creating instace of resultwriter class to call method
 			ResultWriter rw = new ResultWriter();
-			rw.writeToFile(table, table2, table3, table4, grade);
+			rw.writeToFile(table, table2, table3, table4, grade);//passing params to be written to file
 			JOptionPane.showMessageDialog(this, "Results Written to File named \"results.txt\"");
 			frame.dispose();
 		}
@@ -191,11 +210,12 @@ public class FileResults extends JFrame implements ActionListener{
 	//function that sets the dimension of the container 
 	//containing the scrollable view
 	public Dimension getDimension(JTable table) {
+		//
 		int numOfVisibleRows = 5;
-        
-        int cols = table.getColumnModel().getTotalColumnWidth();
-        int rows = table.getRowHeight() * numOfVisibleRows;
-        Dimension dim = new Dimension(cols, rows);
+
+        int cols = table.getColumnModel().getTotalColumnWidth();//num of cols
+        int rows = table.getRowHeight() * numOfVisibleRows;//num of rows
+        Dimension dim = new Dimension(cols, rows);//setting dimension
 		return dim;
 	}//end getDimension
 }//end class
