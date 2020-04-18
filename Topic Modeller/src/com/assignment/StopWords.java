@@ -1,5 +1,15 @@
 package com.assignment;
 
+/*******
+ * This is the StopWords class which is a setting of non informative words in a file
+ * If the Hash Map from FileManager class contains any of these words they will be removed from map 
+ * This class allows user to enter in 3 different file names to be searched
+ * 
+ * Author: Dylan O'Connor
+ * Start Date: 30/03/2020
+ * End Date: 20/04/2020
+ *******/
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -25,8 +35,8 @@ public class StopWords {
 	
 	
 	public StopWords() {
-		//todo
-	}
+		//empty constructor
+	}//end constrcutor
 
 
 	// get a connection to the file
@@ -37,16 +47,18 @@ public class StopWords {
 	}
 	
 	@SuppressWarnings("finally")
-	public HashMap<String, Integer> getStopWords(int total) {
+	public HashMap<String, Integer> getStopWords() {
 		String[] stopwords = new String[550];
 		
 	    try
 		{
 	    	int i = 0;
+	    	//get file in connect to file method
 	    	input = new Scanner(connectToFile()); 
 			while(input.hasNextLine())  
 			 {  
 				stopwords[i] = input.nextLine();
+				//if map has any word in stop list remove it
 				if(words.containsKey(stopwords[i])) {
 					words.remove(stopwords[i]);
 				}//end if
@@ -73,6 +85,8 @@ public class StopWords {
 			//Using File, Print Writer to write new stop words to file
 		    FileWriter f1 = new FileWriter(stopWords, true);
 		    BufferedWriter b1 = new BufferedWriter(f1);
+		    
+		    //used a print writer this time to write to file
 		    PrintWriter newLine = new PrintWriter(b1);
 		    newLine.println(wordEntered);
 		    newLine.close();
