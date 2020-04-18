@@ -12,7 +12,6 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileNotFoundException;
 //import java.io.File;
 import java.util.HashMap;
 //import java.util.Map;
@@ -31,8 +30,8 @@ public class FileChooser extends JFrame implements ActionListener {
 	HashMap<String, Integer> totalWords = new HashMap<String, Integer>();
 
 	
-    public FileChooser (String myTitle) {
-    	super(myTitle);
+    public FileChooser() {
+
     	
     	//Frame/Panel
     	frame = new JFrame();
@@ -112,10 +111,7 @@ public class FileChooser extends JFrame implements ActionListener {
         
     }
    
-    public FileChooser() {
-		// TODO Auto-generated constructor stub
-	}
-
+  
 	public void actionPerformed (ActionEvent e1) {
 		if (e1.getSource() == searchButton) {
 			//getting text from textfield
@@ -127,49 +123,31 @@ public class FileChooser extends JFrame implements ActionListener {
 			try {
 				//creating instance of FileManager class to display Hashmap
 				FileManager fm = new FileManager(file1);
-    		
 				fm.connectToFile();//connecting to file
 				wordMap = fm.getWords();
-				wordMap.forEach((key, value) -> totalWords.merge(key, value, (v1, v2) -> v1+v2));
 				JTable table = setTable(wordMap);
 				fm.closeFile();
     	
     		
 				//creating a new instance fro file2
 				FileManager fm1 = new FileManager(file2);
-    		
 				fm1.connectToFile();//connecting to file
 				wordMap = fm1.getWords();
-				wordMap.forEach((key, value) -> totalWords.merge(key, value, (v1, v2) -> v1+v2));
 				JTable table2 = setTable(wordMap);
 				fm1.closeFile();
 	
     		
 				//creating a new instance for file3
 				FileManager fm2 = new FileManager(file3);
-    		
 				fm2.connectToFile();//connecting to file
 				wordMap = fm2.getWords();
-    		
-				//
-				wordMap.forEach((key, value) -> totalWords.merge(key, value, (v1, v2) -> v1+v2));
 				JTable table3 = setTable(wordMap);
-
 				//closing file 
 				fm2.closeFile();
     		
-    		
-				FileManager tw = new FileManager(totalWords);
-				totalWords = tw.sortMap(totalWords);
-				JTable table4 = setTable(totalWords);
-				System.out.println(totalWords);
-				totalWords.clear();
-    		
-					@SuppressWarnings("unused")
-				FileResults f1 = new FileResults(table, table2, table3, table4);
-    		
-    		
-    		
+				@SuppressWarnings("unused")
+				FileResults f1 = new FileResults(table, table2, table3);
+    		    		    		
 			}//end try 
     	
     	

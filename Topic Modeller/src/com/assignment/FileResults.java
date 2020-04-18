@@ -8,11 +8,6 @@ package com.assignment;
 
 import java.awt.*;
 import java.awt.event.*;
-//import java.io.IOException;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.PrintWriter;
 import java.util.HashMap;
 
 import javax.swing.*;
@@ -33,12 +28,11 @@ public class FileResults extends JFrame implements ActionListener{
 	private static final long serialVersionUID = 1L;
 
 	//constructor
-	public FileResults(JTable table, JTable table2, JTable table3, JTable table4) {
+	public FileResults(JTable table, JTable table2, JTable table3) {
 		
 		this.table = table;
 		this.table2 = table2;
 		this.table3 = table3;
-		this.table4 = table4;
 		
 		frame = new JFrame();
         JPanel panel = new JPanel();
@@ -52,7 +46,7 @@ public class FileResults extends JFrame implements ActionListener{
 		JLabel file1Results = new JLabel("File 1 Results:       ");
 		JLabel file2Results = new JLabel("File 2 Results:       ");
 		JLabel file3Results = new JLabel("File 3 Results:       ");
-		JLabel totalResults = new JLabel("Top 5 words from 3 Files:       ");
+
 		JLabel space = new JLabel("                      ");
 		
 		
@@ -106,10 +100,7 @@ public class FileResults extends JFrame implements ActionListener{
         
         JScrollPane sp2 = new JScrollPane(table3);
         table3.setPreferredScrollableViewportSize(getDimension(table3));
-        
-        JScrollPane sp3 = new JScrollPane(table4);
-        table4.setPreferredScrollableViewportSize(getDimension(table4));
-        
+
         stopText.addActionListener(this);
         enterStop.addActionListener(this);
         reset.addActionListener(this);
@@ -121,7 +112,7 @@ public class FileResults extends JFrame implements ActionListener{
 	    a1.getOverlap(table2);
 	    HashMap<String, Integer> finalOverLap = a1.getOverlap(table3);
 	    
-	    System.out.println("FO: "+finalOverLap);
+	    //System.out.println("FO: "+finalOverLap);
 	    grade = a1.overLapPercentage(finalOverLap);
 	    
 	    JLabel gradeLabel = new JLabel("Based on the Overlapping of the Top 8 words from each file, a grade has ");

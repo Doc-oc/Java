@@ -79,7 +79,7 @@ public class FileManager implements Comparator<Object> {
 	    finally
 	    {
 
-	    	System.out.println(sortMap(wordFreq));
+	    	//System.out.println(sortMap(wordFreq));
 			return sortMap(wordFreq); 
 		      
 	    }//end finally
