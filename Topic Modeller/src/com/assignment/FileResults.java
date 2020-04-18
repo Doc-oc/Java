@@ -130,11 +130,23 @@ public class FileResults extends JFrame implements ActionListener{
 	    
 	    //System.out.println("FO: "+finalOverLap);
 	    grade = a1.overLapPercentage(finalOverLap);
+	    
+	    String result = "";
+	    if (grade < 40.0) {
+	    	result = "Unlikely";
+	    }//end if
+	    else if(grade > 40.0 && grade <= 60) {
+	    	result = "Possibly";
+	    }//end else if
+	    else if (grade > 60.0) {
+	    	result = "Likely";
+	    }//end else if
+	    
 
 	    //Labels Explain Grading system
 	    JLabel gradeLabel = new JLabel("Based on the Overlapping of the Top 8 words from each file, a grade has ");
 	    JLabel gradeLabel2 = new JLabel("been estimated that these  ");
-	    JLabel gradeLabel3 = new JLabel("Grade: "+grade+"% ");
+	    JLabel gradeLabel3 = new JLabel("Grade: "+grade+"%  -> "+ result );
 	    JLabel gradeLabel4 = new JLabel("files are Likely to be about the same topic!");
 	    //Centering grade Label with borders
 	    gradeLabel3.setHorizontalAlignment(SwingConstants.CENTER);
