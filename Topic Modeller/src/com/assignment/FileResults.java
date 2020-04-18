@@ -50,7 +50,7 @@ public class FileResults extends JFrame implements ActionListener{
 		getContentPane().setLayout(bl1);
 		
 		//heading label displayed at the top of the page
-		headingLabel = new JLabel("Results are as follows based on the top 8 words from each file!");
+		headingLabel = new JLabel("Displaying top 8 words from each file plus final grade!");
 		headingLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		//Labels on display
@@ -142,7 +142,13 @@ public class FileResults extends JFrame implements ActionListener{
 	    gradeLabel3.setForeground(Color.blue);
 	   
         
-	    
+	    JLabel resetLabel= new JLabel("Click Reset if you want to recalculate results  ");
+	    JLabel orLabel = new JLabel("------or------");
+	    orLabel.setHorizontalAlignment(SwingConstants.CENTER);
+	    JLabel confirmLabel = new JLabel("Click Confirm for results to be written to a file name \"results.txt\"");
+	    resetLabel.setHorizontalAlignment(SwingConstants.CENTER);
+	    confirmLabel.setHorizontalAlignment(SwingConstants.CENTER);
+	    confirmLabel.setBorder(BorderFactory.createEmptyBorder(0,0,10,0));
         //displaying elemenst on panel
         panel.add(file1Results, left);
         panel.add(sp, right);
@@ -161,6 +167,10 @@ public class FileResults extends JFrame implements ActionListener{
         panel.add(stopText, left);
         panel.add(enterStop, right);
         panel.add(space, south);
+        panel.add(resetLabel, center);
+        panel.add(orLabel, center);
+        panel.add(confirmLabel, center);
+        
         panel.add(reset, south);
         panel.add(confirm, south);
 
@@ -183,12 +193,18 @@ public class FileResults extends JFrame implements ActionListener{
 		if(e1.getSource() == enterStop) {
 			//getting stop word entered
 			String wordEntered = stopText.getText();
-			StopWords sw = new StopWords();
-			sw.connectToFile();//connection to file
-			sw.printToFile(wordEntered);//method to print word to file
-			//clearing textfield after entered
-			stopText.setText(null);//clearin text afterwards
-			JOptionPane.showMessageDialog(this, "Click Reset to see new results!");
+			if(wordEntered == null) {
+				JOptionPane.showMessageDialog(this, "Please enter Word to remove from table");
+			} else {
+				
+				StopWords sw = new StopWords();
+				sw.connectToFile();//connection to file
+				sw.printToFile(wordEntered);//method to print word to file
+				//clearing textfield after entered
+				stopText.setText(null);//clearin text afterwards
+				JOptionPane.showMessageDialog(this, "Click Reset to see new results!");
+			}
+			
 
 		}//end if
 		
