@@ -1,20 +1,19 @@
 package com.assignment;
 
 /*******
- * ..
+ * This class is the File Chooser GUI which is the opening window
+ * This class allows user to enter in 3 different file names to be searched
+ * 
  * Author: Dylan O'Connor
  * Start Date: 30/03/2020
- * End Date: ..
+ * End Date: 20/04/2020
  *******/
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-//import java.io.File;
 import java.util.HashMap;
-//import java.util.Map;
 import java.util.Map;
 
 
@@ -58,6 +57,7 @@ public class FileChooser extends JFrame implements ActionListener {
         file3Text = new JTextField(20);
         file3Text.setToolTipText("Eg. file3name.txt");
         
+        //adding heading and button to north and south of the frame
         frame.getContentPane().add(BorderLayout.NORTH, heading);
         frame.getContentPane().add(BorderLayout.SOUTH, searchButton);
        
@@ -75,17 +75,7 @@ public class FileChooser extends JFrame implements ActionListener {
         right.weightx = 2.0;
         right.fill = GridBagConstraints.HORIZONTAL;
         right.gridwidth = GridBagConstraints.REMAINDER;
-        
-        /*JFileChooser jFileChooser = new JFileChooser();
-        jFileChooser.setCurrentDirectory(new File("/User/dylan"));
-         
-        int result = jFileChooser.showOpenDialog(new JFrame());
-     
-     
-        if (result == JFileChooser.APPROVE_OPTION) {
-            File selectedFile = jFileChooser.getSelectedFile();
-            System.out.println("Selected file: " + selectedFile.getAbsolutePath());
-        }*/
+
         
         searchButton.addActionListener(this);
         file1Text.addActionListener(this);
@@ -167,12 +157,13 @@ public class FileChooser extends JFrame implements ActionListener {
     	);
     	
     	int row=0;
-    	//Entering Data into rows based off first 5 rows of sorted hash map
+    	//Entering Data into rows based off first 8 rows of sorted hash map
     	for (Map.Entry<String, Integer> entry : wordMap.entrySet()) 
     	{
-    		//ensuring the table ony has four rows
+    		//ensuring the table ony has 8 rows
     		if (row!=8) 
     		{
+    			//add key and value at that iteration to table
     	        tableModel.addRow(new Object[] { entry.getKey(), entry.getValue() });
     	        row++;
     	    }//end if
