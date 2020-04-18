@@ -16,7 +16,7 @@ public class ResultWriter {
 		
 	}//end 
 
-	public void writeToFile(JTable table, JTable table2, JTable table3, JTable table4) {
+	public void writeToFile(JTable table, JTable table2, JTable table3, JTable table4, float grade) {
 		try {
 
 			file = new File("results.txt");
@@ -29,7 +29,8 @@ public class ResultWriter {
 			BufferedWriter b1 = new BufferedWriter(f1);
 			
 			//File 1 Resultrs
-			b1.write("Results From Files: \n");
+			b1.write("Results calculated by Topic Modeller! \n");
+			b1.write("Displaying the 8 Most frequent words from each file plus final grade! \n");
 			b1.write("\nFile1: ");
 			for (int row = 0; row < table.getRowCount(); row++) {
 				b1.write("\n");
@@ -66,15 +67,8 @@ public class ResultWriter {
 			
 			//total results
 			b1.write("\n");
-			b1.write("\nTotal Results: ");
-			for (int row = 0; row < table4.getRowCount(); row++) {
-				b1.write("\n");
-			    for (int col = 0; col < table4.getColumnCount(); col++) {
-					if (table4.getValueAt(row, col) != null) {
-						b1.write(table4.getValueAt(row, col) + "\t" );
-					}
-				}//end j for
-			}//end i for
+			b1.write("\nGrade of how likely these files are to be about the same topic:  " + grade + "%");
+			
 			
 			//closing writers
 			b1.close();

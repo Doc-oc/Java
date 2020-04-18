@@ -28,7 +28,8 @@ public class FileResults extends JFrame implements ActionListener{
 	JButton enterStop, reset, confirm;
 	JTable table, table2, table3, table4;
 	HashMap<String, Integer>finalOverLap = new HashMap<String,Integer>();
-
+	float grade;
+	
 	private static final long serialVersionUID = 1L;
 
 	//constructor
@@ -56,7 +57,7 @@ public class FileResults extends JFrame implements ActionListener{
 		
 		
 		stopText = new JTextField(15);
-		JLabel stopWords = new JLabel("If a word from table is not informative, Enter Here to Remove:  ");
+		JLabel stopWords = new JLabel("If a word from table is not informative, Enter Here to Remove and Recalculate:  ");
 		enterStop = new JButton("Enter");
 		reset = new JButton("Reset");
 		reset.setBackground(Color.red);
@@ -121,11 +122,11 @@ public class FileResults extends JFrame implements ActionListener{
 	    HashMap<String, Integer> finalOverLap = a1.getOverlap(table3);
 	    
 	    System.out.println("FO: "+finalOverLap);
-	    float grade = a1.overLapPercentage(finalOverLap);
+	    grade = a1.overLapPercentage(finalOverLap);
 	    
 	    JLabel gradeLabel = new JLabel("Based on the Overlapping of the Top 8 words from each file, a grade has ");
 	    JLabel gradeLabel2 = new JLabel("been estimated that these  ");
-	    JLabel gradeLabel3 = new JLabel("Grade: "+grade+"%,");
+	    JLabel gradeLabel3 = new JLabel("Grade: "+grade+"% ");
 	    JLabel gradeLabel4 = new JLabel("files are Likely to be about the same topic!");
 	   gradeLabel3.setHorizontalAlignment(SwingConstants.CENTER);
 	   gradeLabel3.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
@@ -189,7 +190,7 @@ public class FileResults extends JFrame implements ActionListener{
 		
 		else if(e1.getSource() == confirm) {
 			ResultWriter rw = new ResultWriter();
-			rw.writeToFile(table, table2, table3, table4);
+			rw.writeToFile(table, table2, table3, table4, grade);
 			JOptionPane.showMessageDialog(this, "Results Written to File named \"results.txt\"");
 			frame.dispose();
 		}
