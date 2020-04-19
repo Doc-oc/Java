@@ -81,7 +81,7 @@ public class ResultWriter {
 			
 			//Displaying total results
 			b1.write("\n");
-			b1.write("\nGrade of how likely these files are to be about the same topic:  " + grade + "%");
+			b1.write("\nGrade of how likely these files are to be about the same topic:  " + Math.round(grade*100.0)/100.0  + "%");
 			
 			
 			//closing writers
