@@ -145,10 +145,14 @@ public class FileResults extends JFrame implements ActionListener{
 
 	    //Labels Explain Grading system
 	    JLabel gradeLabel = new JLabel("Based on the Overlapping of the Top 8 words from each file, a grade has ");
-	    JLabel gradeLabel2 = new JLabel("been estimated that these  ");
+	    JLabel gradeLabel2 = new JLabel("been estimated of how likely these files are to be about the same topic!");
+
 	    JLabel gradeLabel3 = new JLabel("Grade: "+grade+"%  -> "+ result );
-	    JLabel gradeLabel4 = new JLabel("files are Likely to be about the same topic!");
-	    //Centering grade Label with borders
+	    //Centering grade Labels with borders
+	    gradeLabel.setHorizontalAlignment(SwingConstants.CENTER);
+	    gradeLabel2.setHorizontalAlignment(SwingConstants.CENTER);
+	    gradeLabel.setBorder(BorderFactory.createEmptyBorder(10,0,0,0));
+	    //Centering grade Labels with borders
 	    gradeLabel3.setHorizontalAlignment(SwingConstants.CENTER);
 	    gradeLabel3.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
 	    gradeLabel3.setForeground(Color.blue);
@@ -170,8 +174,8 @@ public class FileResults extends JFrame implements ActionListener{
         panel.add(sp2, right);
         
         panel.add(gradeLabel, center);
-        panel.add(gradeLabel2, left);
-        panel.add(gradeLabel4, right);
+        panel.add(gradeLabel2, center);
+
         panel.add(gradeLabel3, south);
         
         panel.add(space, center);
