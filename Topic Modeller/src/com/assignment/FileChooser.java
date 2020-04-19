@@ -39,8 +39,8 @@ public class FileChooser extends JFrame implements ActionListener {
 
         
         //heading
-        heading = new JLabel("Welcome to Topic Modeller! Enter 3 different files To see if they are related!");
-        heading.setBorder(BorderFactory.createEmptyBorder(15,15,0,15));
+        heading = new JLabel("Welcome to Topic Modeller!");
+        heading.setBorder(BorderFactory.createEmptyBorder(15,0,0,15));
         
         //Labels
         fileLabel1 = new JLabel("File 1 Name: ");
@@ -59,8 +59,8 @@ public class FileChooser extends JFrame implements ActionListener {
         
         //adding heading and button to north and south of the frame
         frame.getContentPane().add(BorderLayout.NORTH, heading);
+        heading.setHorizontalAlignment(SwingConstants.CENTER);
         frame.getContentPane().add(BorderLayout.SOUTH, searchButton);
-       
         
         //Setting up gridlayout
         panel.setLayout(new GridBagLayout());
@@ -75,7 +75,22 @@ public class FileChooser extends JFrame implements ActionListener {
         right.weightx = 2.0;
         right.fill = GridBagConstraints.HORIZONTAL;
         right.gridwidth = GridBagConstraints.REMAINDER;
-
+        
+        //center elements constraints
+        GridBagConstraints center = new GridBagConstraints();
+        center.fill=GridBagConstraints.BOTH;
+        center.anchor=GridBagConstraints.CENTER;
+        center.weightx = 1.0;
+        center.gridwidth = GridBagConstraints.REMAINDER;
+        
+        JLabel rulesLabel = new JLabel("Rules");
+        rulesLabel.setForeground(Color.red);
+        rulesLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        JLabel info = new JLabel("- Enter 3 different files below to see how likely it is that they are related");
+        JLabel info1 = new JLabel("- You must enter 3 valid files in the format \"FileName.txt\"");
+        JLabel info2 = new JLabel("- Files must be in the same folder as the Topic Modeller tool!");
+        JLabel info3 = new JLabel("- Click Search to see results!");
+        info3.setBorder(BorderFactory.createEmptyBorder(0,0,20,0));
         
         searchButton.addActionListener(this);
         file1Text.addActionListener(this);
@@ -84,6 +99,11 @@ public class FileChooser extends JFrame implements ActionListener {
 	
         
         //adding elements to gui
+        panel.add(rulesLabel, center);
+        panel.add(info, center);
+        panel.add(info1, center);
+        panel.add(info2, center);
+        panel.add(info3, center);
         panel.add(fileLabel1, left);
         panel.add(file1Text, right);
         panel.add(fileLabel2, left);
