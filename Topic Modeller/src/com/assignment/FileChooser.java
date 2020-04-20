@@ -20,6 +20,8 @@ import java.util.Map;
 public class FileChooser extends JFrame implements ActionListener {
 	
 	private static final long serialVersionUID = 1L;
+	
+	//attributes
 	JLabel heading, fileLabel1, fileLabel2, fileLabel3;
 	JButton searchButton; 
 	JTextField file1Text, file2Text, file3Text;
@@ -35,9 +37,10 @@ public class FileChooser extends JFrame implements ActionListener {
     	//Frame/Panel
     	frame = new JFrame();
         JPanel panel = new JPanel();
-        searchButton = new JButton("Search Files!");
-
         
+        //search button
+        searchButton = new JButton("Search Files!");
+    
         //heading
         heading = new JLabel("Welcome to Topic Modeller!");
         heading.setBorder(BorderFactory.createEmptyBorder(15,0,0,15));
@@ -50,7 +53,7 @@ public class FileChooser extends JFrame implements ActionListener {
         //Text Field Elements
         file1Text = new JTextField(20);
         file1Text.setToolTipText("Eg. file1name.txt");
-        
+     
         file2Text = new JTextField(20);
         file2Text.setToolTipText("Eg. file2name.txt");
         
@@ -83,6 +86,7 @@ public class FileChooser extends JFrame implements ActionListener {
         center.weightx = 1.0;
         center.gridwidth = GridBagConstraints.REMAINDER;
         
+        //rule labels
         JLabel rulesLabel = new JLabel("Rules");
         rulesLabel.setForeground(Color.red);
         rulesLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -92,6 +96,7 @@ public class FileChooser extends JFrame implements ActionListener {
         JLabel info3 = new JLabel("- Click Search to see results!");
         info3.setBorder(BorderFactory.createEmptyBorder(0,0,20,0));
         
+        //action listeners
         searchButton.addActionListener(this);
         file1Text.addActionListener(this);
         file2Text.addActionListener(this);
@@ -121,7 +126,7 @@ public class FileChooser extends JFrame implements ActionListener {
         
     }
    
-  
+    //actionHandler
 	public void actionPerformed (ActionEvent e1) {
 		if (e1.getSource() == searchButton) {
 			//getting text from textfield
@@ -169,6 +174,7 @@ public class FileChooser extends JFrame implements ActionListener {
 		}//end if
     }//end actionPerformed
     
+	//creaing table model to use
     public JTable setTable(HashMap<String, Integer> wordMap) {
     	
     	//setting the header title names
