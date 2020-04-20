@@ -7,12 +7,11 @@ package com.assignment;
  * End Date: ..
  *******/
 public class Control {
+	//main
 	public static void main(String [] args) {
 		
 		@SuppressWarnings("unused")
 		FileChooser screen = new FileChooser();
 
-		
-		//newAn.getWords();
 	}//end main
 }//end control
