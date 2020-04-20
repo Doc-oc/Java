@@ -78,7 +78,7 @@ public class StopWords {
 	    }//end finally
     }//end getStopWords()
 	
-	
+	//printing words to sto words file
 	public void printToFile(String wordEntered) {
 		try {
 			
@@ -94,7 +94,7 @@ public class StopWords {
 		}//end try 
 		catch (IOException e1) 
 		{
-			//exception handling left as an exercise for the reader
+			
 			System.out.println("Error: "+ e1);
 		}//end catch
 	}//end printtoFile()
