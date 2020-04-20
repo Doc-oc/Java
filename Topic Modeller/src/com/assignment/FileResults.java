@@ -157,7 +157,6 @@ public class FileResults extends JFrame implements ActionListener{
 	    gradeLabel3.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
 	    gradeLabel3.setForeground(Color.blue);
 	   
-        
 	    JLabel resetLabel= new JLabel("Click Reset if you want to recalculate results  ");
 	    JLabel orLabel = new JLabel("------or------");
 	    orLabel.setHorizontalAlignment(SwingConstants.CENTER);
