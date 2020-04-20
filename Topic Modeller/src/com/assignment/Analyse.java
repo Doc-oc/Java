@@ -65,8 +65,6 @@ public class Analyse {
 		//multiplied by 100 to get perecentage
 		overlapPercent = ((counter / overlap.size())*100);
 		
-		//System.out.println(overlapPercent);
-		
 		return overlapPercent;
 	}
 }//end Analyse 
