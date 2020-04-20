@@ -109,7 +109,7 @@ public class FileManager implements Comparator<Object> {
 	//for this function I did some research into hashmaps and how they work 
 	//I bought a java book and did online research on websites such as geeksforgeek etc.
 	//
-	//this is the code that I could come up with to sort an array
+	//this is the code that I could come up with to sort an array based off the stuff I learned
 	//There is probably a more efficient way of doing this but this was the best I could do
 	public HashMap<String, Integer> sortMap(HashMap<String, Integer> wordCount){
 		
@@ -126,6 +126,7 @@ public class FileManager implements Comparator<Object> {
 		StopWords s1 = new StopWords(sortCount);
 		s1.getStopWords();//passing sorted map to remove stop words
 		
+		//
 		return sortCount;
 	}//end sortMap
 	
