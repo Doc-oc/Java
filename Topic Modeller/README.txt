@@ -2,6 +2,10 @@ Program Details
 Project title: Topic Modeller
 Author: C18444694	
 
+My Topic Modeller takes in 3 files and then displays the 8 most common words from each file and there count,
+A grade is produced of how likely they are to be related based on the overlapping words in the most common words
+You can remove any stop words from the common words if you want, results are then wrote to a file called results.txt
+
 My program has 7 classes : FileChooser, FileResults, FileManager, ResultsWriter, Stop Words, Control and Analyse
 
 FileChooser class is the opening screen GUI , it allows the user to enter 3 files into a GUI so that they can be searched.
