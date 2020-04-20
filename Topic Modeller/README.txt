@@ -25,5 +25,13 @@ hashmap and each word is counted to see if they overlap. A percentage is then pr
 
 Control Class contains the main so that is where the program is ran from.
 
+What I would Change?
+If I had more time I could enhance the program and make it even more useful than it already is, at the moment its main
+focus is "txt" files, I would modify it so that it can take any file and read from it, including files that contain
+images. I would also make it more accurate , in that words that have similar meaning but are different I could group them
+together. I plan to try make it so that it can work on the web and you can see if news articles are related or if websites are related.
+Even further down the line I could make it a chrome extension and anybody could use it.
+
+
 YT Link:
 https://youtu.be/KKAZ6FqJRIE
